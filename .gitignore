@@ -1,0 +1,62 @@
+# Ignore build directories
+build/
+Build/
+out/
+dist/
+
+# Ignore log files
+logs/
+*.log
+
+# Ignore install directories
+install/
+
+# Qt-specific
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.tmp
+.#*
+*.*#
+core
+!core/
+Makefile*
+*build-*
+*.qm
+*.prl
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+cmake_build_debug/
+cmake_build_release/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Emacs
+.dir-locals.el
+.projectile
+*~
+\#*\#
+.\#*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Ignore prompt files or personal notes
+CLAUDE.md
+*.prompt.md
