@@ -13,7 +13,7 @@ Rectangle {
 
     Plugin {
 	id: mapPlugin
-	name: "osm"
+	name: "mapboxgl"
     }
 
     Map {
@@ -107,6 +107,17 @@ Rectangle {
 	font.pixelSize: 15
 	font.bold: true
 	color: "black"
+    }
+
+    NavigationSearchBox {
+	id: navSearchBox
+	anchors {
+	    left: lockIcon.left
+	    top: lockIcon.bottom
+	    topMargin: 15
+	}
+	width: parent.width / 3
+	height: parent.height / 12
     }
 
     width: parent.width * 2/3

@@ -3,10 +3,12 @@
         <file>Main.qml</file>
         <file>ui/BottomBar/BottomBar.qml</file>
         <file>ui/RightScreen/RightScreen.qml</file>
+        <file>ui/RightScreen/NavigationSearchBox.qml</file>
         <file>ui/LeftScreen/LeftScreen.qml</file>
 	<file>images/carRender.png</file>
 	<file>images/carSettingsIcon.png</file>
 	<file>images/padlock.png</file>
-	<file>images/padlock-unlock.png</file>			
+	<file>images/padlock-unlock.png</file>
+	<file>images/search.png</file>			
     </qresource>
 </RCC>
