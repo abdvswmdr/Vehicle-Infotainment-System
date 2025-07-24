@@ -11,7 +11,18 @@ System::System(QObject *parent)
     , m_carLocked(true)      // Default car status is locked
     , m_outdoorTemp(32)      // Default temperature
     , m_userName("User")     // Default user name
+    , m_currentTimeTimer(new QTimer(this))
 {
+    // Set up the timer for updating current time
+    m_currentTimeTimer->setInterval(500); // Update every 500ms
+    m_currentTimeTimer->setSingleShot(false); // Repeating timer
+    
+    // Connect timer timeout to our update slot
+    connect(m_currentTimeTimer, &QTimer::timeout, this, &System::updateCurrentTime);
+    
+    // Initialize current time and start the timer
+    updateCurrentTime();
+    m_currentTimeTimer->start();
 }
 
 // --- Getter Implementations ---
@@ -29,6 +40,11 @@ int System::outdoorTemp() const
 QString System::userName() const
 {
     return m_userName;
+}
+
+QString System::currentTime() const
+{
+    return m_currentTime;
 }
 
 // --- Setter Implementations ---
@@ -61,4 +77,16 @@ void System::setUserName(const QString &userName)
 
     m_userName = userName;
     emit userNameChanged(m_userName);
+}
+
+// --- Timer Slot Implementation ---
+
+void System::updateCurrentTime()
+{
+    QString newTime = QDateTime::currentDateTime().toString("hh:mm ap");
+    
+    if (m_currentTime != newTime) {
+        m_currentTime = newTime;
+        emit currentTimeChanged(m_currentTime);
+    }
 }

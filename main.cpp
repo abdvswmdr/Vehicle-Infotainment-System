@@ -16,12 +16,14 @@ int main(int argc, char *argv[])
 	System m_systemHandler;
 	
   QQmlApplicationEngine engine;
+  
+  // Set context property BEFORE loading QML
+	QQmlContext * context( engine.rootContext() );
+	context->setContextProperty( "systemHandler", &m_systemHandler );
+	
   engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
   if (engine.rootObjects().isEmpty())
     exit(-1);
-
-	QQmlContext * context( engine.rootContext() );
-	context->setContextProperty( "systemHandler", &m_systemHandler );
 	
   return app.exec();
 }

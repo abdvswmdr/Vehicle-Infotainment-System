@@ -40,5 +40,19 @@ Rectangle {
 	}
     }
 
+    Text {
+	id: timeDisplay
+	anchors {
+	    left: lockIcon.right
+	    top: parent.top
+	    margins: 20
+	}
+	
+	text: systemHandler.currentTime
+	font.pixelSize: parent.width / 30
+	font.bold: true
+	color: "white"
+    }
+
     width: parent.width * 2/3
 }

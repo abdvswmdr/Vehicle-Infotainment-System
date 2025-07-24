@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QTimer>
+#include <QDateTime>
 
 /**
  * @brief The System class represents the backend system for the application.
@@ -21,6 +23,7 @@ class System : public QObject
     Q_PROPERTY(bool carLocked READ carLocked WRITE setCarLocked NOTIFY carLockedChanged)
     Q_PROPERTY(int outdoorTemp READ outdoorTemp WRITE setOutdoorTemp NOTIFY outdoorTempChanged)
     Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
+    Q_PROPERTY(QString currentTime READ currentTime NOTIFY currentTimeChanged)
 
 public:
     /**
@@ -47,6 +50,12 @@ public:
      * @return The user's name as a QString.
      */
     QString userName() const;
+
+    /**
+     * @brief Gets the current time.
+     * @return The current time as a formatted QString.
+     */
+    QString currentTime() const;
 
 
 public slots:
@@ -91,11 +100,27 @@ signals:
      */
     void userNameChanged(const QString &userName);
 
+    /**
+     * @brief Signal emitted when the current time changes.
+     * @param currentTime The new current time.
+     */
+    void currentTimeChanged(const QString &currentTime);
+
+private slots:
+    /**
+     * @brief Updates the current time and emits the signal.
+     */
+    void updateCurrentTime();
+
 private:
     // Member variables to store the property values.
     bool m_carLocked;
     int m_outdoorTemp;
     QString m_userName;
+    QString m_currentTime;
+
+    // Timer for updating current time
+    QTimer *m_currentTimeTimer;
 };
 
 #endif // SYSTEM_H
