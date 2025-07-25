@@ -10,7 +10,7 @@ Rectangle {
         source: "qrc:/images/search.png"
         anchors {
             left: parent.left
-            leftMargin: 25
+            leftMargin: 20
             verticalCenter: parent.verticalCenter
         }
         height: parent.height * 0.45
@@ -39,7 +39,7 @@ Rectangle {
             right: parent.right
         }
         verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 16
+        font.pixelSize: 18
         clip: true
     }
 }

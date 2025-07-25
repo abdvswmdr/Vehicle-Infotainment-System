@@ -31,7 +31,7 @@ Rectangle {
 	    margins:20 
 	}
 
-	width: parent.width / 40
+	width: parent.width / 38
 	fillMode: Image.PreserveAspectFit
 	source: ( systemHandler.carLocked ? "qrc:/images/padlock.png" : "qrc:/images/padlock-unlock.png" )
 	MouseArea {
@@ -47,7 +47,7 @@ Rectangle {
 	    // top: parent.top
 	    //bottom: lockIcon.bottom / 2
 	    verticalCenter: lockIcon.verticalCenter
-	    leftMargin: 40
+	    leftMargin: 30
 	}
 	
 	text: systemHandler.currentTime
@@ -63,7 +63,7 @@ Rectangle {
 	    left: timeDisplay.right
 	    // bottom: lockIcon.bottom
 	    verticalCenter: lockIcon.verticalCenter
-	    leftMargin: 40
+	    leftMargin: 25
 	}
 	
 	text: systemHandler.outdoorTemp + "°C"
@@ -77,12 +77,12 @@ Rectangle {
 	anchors {
 	    left: temperatureDisplay.right
 	    verticalCenter: lockIcon.verticalCenter
-	    leftMargin: 40
+	    leftMargin: 25
 	}
 	
 	width: 16
 	height: 16
-	radius: 12
+	radius: 16
 	color: "red"
 	border.color: "darkred"
 	border.width: 1
@@ -92,7 +92,7 @@ Rectangle {
 	    anchors.centerIn: parent
 	    width: 4
 	    height: 4
-	    radius: 4
+	    radius: 8
 	    color: "white"
 	}
     }
@@ -102,11 +102,11 @@ Rectangle {
 	anchors {
 	    left: recordingIcon.right
 	    verticalCenter: lockIcon.verticalCenter
-	    leftMargin: 40
+	    leftMargin: 25
 	}
 	
-	width: 18
-	height: 18
+	width: parent.width / 42
+	// height: 18
 	fillMode: Image.PreserveAspectFit
 	source: "qrc:/images/userIcon.png"
     }

@@ -28,7 +28,7 @@ Rectangle {
         id: driverHVACControl
         anchors {
             left: carSettingsIcon.right
-            leftMargin: 150
+            leftMargin: 50
             top: parent.top
             bottom: parent.bottom
         }
@@ -112,7 +112,7 @@ Rectangle {
         id: volumeControl
         anchors {
             right: parent.right
-            rightMargin: 30
+            rightMargin: 80
             top: parent.top
             bottom: parent.bottom
         }
@@ -122,7 +122,7 @@ Rectangle {
         id: passengerHVACControl
         anchors {
             right: volumeControl.left
-            rightMargin: 50
+            rightMargin: 30
             top: parent.top
             bottom: parent.bottom
         }

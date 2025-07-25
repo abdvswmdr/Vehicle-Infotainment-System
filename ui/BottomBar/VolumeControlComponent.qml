@@ -23,7 +23,7 @@ Rectangle {
             id: decrementText
             anchors.centerIn: parent
             text: "◀"
-            font.pixelSize: 12
+            font.pixelSize: 25
             color: fontColor
         }
         
@@ -37,7 +37,7 @@ Rectangle {
         id: volumeIcon
         anchors {
             left: decrementButton.right
-            leftMargin: 15
+            leftMargin: 6
             verticalCenter: parent.verticalCenter
         }
         
@@ -61,7 +61,7 @@ Rectangle {
         id: volumeTextLabel
         anchors.centerIn: volumeIcon
         text: audioController.volumeLevel
-        font.pixelSize: 16
+        font.pixelSize: 24
         color: fontColor
         visible: !volumeIcon.visible
     }
@@ -70,7 +70,7 @@ Rectangle {
         id: incrementButton
         anchors {
             left: volumeIcon.right
-            leftMargin: 15
+            leftMargin: 6
             top: parent.top
             bottom: parent.bottom
         }
@@ -81,7 +81,7 @@ Rectangle {
             id: incrementText
             anchors.centerIn: parent
             text: "▶"
-            font.pixelSize: 12
+            font.pixelSize: 25
             color: fontColor
         }
         

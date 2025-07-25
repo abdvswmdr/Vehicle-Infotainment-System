@@ -9,7 +9,7 @@ Rectangle {
     property string fontColor: "#737373"
     
     // Width is calculated based on the content and will be set by the parent
-    width: 90 * parent.width / 1280 // Responsive width based on screen size
+    width: 100 * parent.width / 1280 // Responsive width based on screen size
     
     Rectangle {
         id: decrementButton
@@ -25,7 +25,7 @@ Rectangle {
             id: decrementText
             anchors.centerIn: parent
             text: "◀"
-            font.pixelSize: 12
+            font.pixelSize: 25
             color: fontColor
         }
         
@@ -39,12 +39,12 @@ Rectangle {
         id: targetTemperatureText
         anchors {
             left: decrementButton.right
-            leftMargin: 15
+            leftMargin: 6
             verticalCenter: parent.verticalCenter
         }
         
         text: hvacController ? hvacController.targetTemperature : "70"
-        font.pixelSize: 24
+        font.pixelSize: 25
         color: fontColor
     }
     
@@ -52,7 +52,7 @@ Rectangle {
         id: incrementButton
         anchors {
             left: targetTemperatureText.right
-            leftMargin: 15
+            leftMargin: 6
             top: parent.top
             bottom: parent.bottom
         }
@@ -63,7 +63,7 @@ Rectangle {
             id: incrementText
             anchors.centerIn: parent
             text: "▶"
-            font.pixelSize: 12
+            font.pixelSize: 25
             color: fontColor
         }
         
