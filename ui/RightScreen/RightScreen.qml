@@ -45,13 +45,14 @@ Rectangle {
 	anchors {
 	    left: lockIcon.right
 	    // top: parent.top
-	    bottom: lockIcon.bottom
+	    //bottom: lockIcon.bottom / 2
+	    verticalCenter: lockIcon.verticalCenter
 	    leftMargin: 40
 	}
 	
 	text: systemHandler.currentTime
 	// font.pixelSize: parent.width / 30
-	font.pixelSize: 15
+	font.pixelSize: 20
 	font.bold: true
 	color: "black"
     }
@@ -60,12 +61,13 @@ Rectangle {
 	id: temperatureDisplay
 	anchors {
 	    left: timeDisplay.right
-	    bottom: lockIcon.bottom
+	    // bottom: lockIcon.bottom
+	    verticalCenter: lockIcon.verticalCenter
 	    leftMargin: 40
 	}
 	
 	text: systemHandler.outdoorTemp + "°C"
-	font.pixelSize: 15
+	font.pixelSize: 20
 	font.bold: true
 	color: "black"
     }
@@ -74,13 +76,13 @@ Rectangle {
 	id: recordingIcon
 	anchors {
 	    left: temperatureDisplay.right
-	    bottom: lockIcon.bottom
+	    verticalCenter: lockIcon.verticalCenter
 	    leftMargin: 40
 	}
 	
 	width: 16
 	height: 16
-	radius: 8
+	radius: 12
 	color: "red"
 	border.color: "darkred"
 	border.width: 1
@@ -90,21 +92,35 @@ Rectangle {
 	    anchors.centerIn: parent
 	    width: 4
 	    height: 4
-	    radius: 2
+	    radius: 4
 	    color: "white"
 	}
+    }
+
+    Image {
+	id: userIcon
+	anchors {
+	    left: recordingIcon.right
+	    verticalCenter: lockIcon.verticalCenter
+	    leftMargin: 40
+	}
+	
+	width: 18
+	height: 18
+	fillMode: Image.PreserveAspectFit
+	source: "qrc:/images/userIcon.png"
     }
 
     Text {
 	id: userNameDisplay
 	anchors {
-	    left: recordingIcon.right
-	    bottom: lockIcon.bottom
-	    leftMargin: 40
+	    left: userIcon.right
+	    verticalCenter: lockIcon.verticalCenter
+	    leftMargin: 8
 	}
 	
 	text: systemHandler.userName
-	font.pixelSize: 15
+	font.pixelSize: 20
 	font.bold: true
 	color: "black"
     }
@@ -117,7 +133,7 @@ Rectangle {
 	    topMargin: 15
 	}
 	width: parent.width / 3
-	height: parent.height / 12
+	height: parent.height / 14
     }
 
     width: parent.width * 2/3

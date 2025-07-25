@@ -2,6 +2,8 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>ui/BottomBar/BottomBar.qml</file>
+        <file>ui/BottomBar/HVACComponent.qml</file>
+        <file>ui/BottomBar/VolumeControlComponent.qml</file>
         <file>ui/RightScreen/RightScreen.qml</file>
         <file>ui/RightScreen/NavigationSearchBox.qml</file>
         <file>ui/LeftScreen/LeftScreen.qml</file>
@@ -9,6 +11,15 @@
 	<file>images/carSettingsIcon.png</file>
 	<file>images/padlock.png</file>
 	<file>images/padlock-unlock.png</file>
-	<file>images/search.png</file>			
+	<file>images/search.png</file>
+	<file>images/userIcon.png</file>
+	<file>images/mapIcon.png</file>
+	<file>images/musicIcon.png</file>
+	<file>images/phoneCallIcon.png</file>
+	<file>images/videoIcon.png</file>
+	<file>images/volume-max.png</file>
+	<file>images/volume-mute.png</file>
+	<file>images/volume-up.png</file>
+	<file>images/volume-zero.png</file>			
     </qresource>
 </RCC>

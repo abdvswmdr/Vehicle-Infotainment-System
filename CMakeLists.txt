@@ -13,6 +13,10 @@ add_executable(NeoVehicle
     main.cpp 
     controllers/src/system.cpp
     controllers/headers/system.h
+    controllers/src/hvachandler.cpp
+    controllers/headers/hvachandler.h
+    controllers/src/audiocontroller.cpp
+    controllers/headers/audiocontroller.h
     ${RESOURCES}
 )
 

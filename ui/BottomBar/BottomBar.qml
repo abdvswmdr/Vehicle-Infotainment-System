@@ -23,4 +23,109 @@ Rectangle {
 
         source: "qrc:/images/carSettingsIcon.png"
     }
+    
+    HVACComponent {
+        id: driverHVACControl
+        anchors {
+            left: carSettingsIcon.right
+            leftMargin: 150
+            top: parent.top
+            bottom: parent.bottom
+        }
+        hvacController: driverHVAC
+    }
+    
+    Row {
+        id: middleIconsRow
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
+        spacing: 40
+        
+        Image {
+            id: musicIcon
+            width: bottomBar.height * 0.6
+            height: bottomBar.height * 0.6
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/images/musicIcon.png"
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // Add music app functionality here
+                    console.log("Music icon clicked")
+                }
+            }
+        }
+        
+        Image {
+            id: mapIcon
+            width: bottomBar.height * 0.6
+            height: bottomBar.height * 0.6
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/images/mapIcon.png"
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // Add navigation functionality here
+                    console.log("Map icon clicked")
+                }
+            }
+        }
+        
+        Image {
+            id: phoneIcon
+            width: bottomBar.height * 0.6
+            height: bottomBar.height * 0.6
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/images/phoneCallIcon.png"
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // Add phone functionality here
+                    console.log("Phone icon clicked")
+                }
+            }
+        }
+        
+        Image {
+            id: videoIcon
+            width: bottomBar.height * 0.6
+            height: bottomBar.height * 0.6
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/images/videoIcon.png"
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // Add video functionality here
+                    console.log("Video icon clicked")
+                }
+            }
+        }
+    }
+    
+    VolumeControlComponent {
+        id: volumeControl
+        anchors {
+            right: parent.right
+            rightMargin: 30
+            top: parent.top
+            bottom: parent.bottom
+        }
+    }
+    
+    HVACComponent {
+        id: passengerHVACControl
+        anchors {
+            right: volumeControl.left
+            rightMargin: 50
+            top: parent.top
+            bottom: parent.bottom
+        }
+        hvacController: passengerHVAC
+    }
 }
