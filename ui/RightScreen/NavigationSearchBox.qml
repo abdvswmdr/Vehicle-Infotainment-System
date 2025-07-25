@@ -26,6 +26,7 @@ Rectangle {
             leftMargin: 20
             verticalCenter: parent.verticalCenter
         }
+	font.pixelSize: 18
         visible: navigationTextInput.text === ""
     }
 
