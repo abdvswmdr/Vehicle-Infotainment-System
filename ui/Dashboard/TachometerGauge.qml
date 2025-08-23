@@ -33,7 +33,7 @@ Rectangle {
             // Draw RPM markings
             ctx.strokeStyle = "#666"
             ctx.lineWidth = 1.5
-            ctx.font = "10px Arial"
+            ctx.font = "10px sans-serif"
             ctx.fillStyle = "#333"
             ctx.textAlign = "center"
             
@@ -113,7 +113,7 @@ Rectangle {
         text: "RPM x1000"
         color: "#666"
         font.pixelSize: 10
-        font.family: "Arial"
+        font.family: "sans-serif"
     }
     
     // Digital RPM display

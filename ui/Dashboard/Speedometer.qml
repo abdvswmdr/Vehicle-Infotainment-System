@@ -33,7 +33,7 @@ Rectangle {
             // Draw speed markings
             ctx.strokeStyle = "#666"
             ctx.lineWidth = 2
-            ctx.font = "12px Arial"
+            ctx.font = "12px sans-serif"
             ctx.fillStyle = "#333"
             ctx.textAlign = "center"
             

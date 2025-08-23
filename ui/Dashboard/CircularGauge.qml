@@ -10,7 +10,7 @@ Rectangle {
     property real maxValue: 100
     property string title: "GAUGE"
     property string unit: ""
-    property color color: "#00aa44"
+    property color gaugeColor: "#00aa44"
     property real warningThreshold: maxValue * 0.8
     property real needleAngle: (value / maxValue) * 180 - 90 // -90 to +90 degrees
 
@@ -38,7 +38,7 @@ Rectangle {
             var valueAngle = Math.PI + (value / maxValue) * Math.PI
             ctx.beginPath()
             ctx.arc(centerX, centerY, radius, Math.PI, valueAngle)
-            ctx.strokeStyle = value > warningThreshold ? "#ff4444" : color
+            ctx.strokeStyle = value > warningThreshold ? "#ff4444" : gaugeColor
             ctx.lineWidth = 8
             ctx.stroke()
             
@@ -115,7 +115,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 8
         text: Math.round(value) + unit
-        color: value > warningThreshold ? "#ff4444" : color
+        color: value > warningThreshold ? "#ff4444" : gaugeColor
         font.pixelSize: 12
         font.bold: true
         

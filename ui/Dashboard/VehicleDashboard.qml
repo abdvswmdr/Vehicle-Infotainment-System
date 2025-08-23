@@ -37,7 +37,7 @@ Rectangle {
                     maxValue: 100
                     title: "FUEL"
                     unit: "%"
-                    color: value < 20 ? "#ff4444" : "#00aa44"
+                    gaugeColor: value < 20 ? "#ff4444" : "#00aa44"
                     warningThreshold: 20
                 }
 
@@ -49,7 +49,7 @@ Rectangle {
                     maxValue: 120
                     title: "TEMP"
                     unit: "°C"
-                    color: value > 100 ? "#ff4444" : "#00aaff"
+                    gaugeColor: value > 100 ? "#ff4444" : "#00aaff"
                     warningThreshold: 105
                 }
             }
@@ -130,14 +130,14 @@ Rectangle {
                     // Turn signals
                     WarningLight {
                         active: vehicleData.leftTurnSignal
-                        color: "#00aa00"
+                        lightColor: "#00aa00"
                         symbol: "◀"
                         blinking: true
                     }
 
                     WarningLight {
                         active: vehicleData.rightTurnSignal
-                        color: "#00aa00"
+                        lightColor: "#00aa00"
                         symbol: "▶"
                         blinking: true
                     }
@@ -145,7 +145,7 @@ Rectangle {
                     // Engine warning
                     WarningLight {
                         active: vehicleData.engineTemperature > 105
-                        color: "#ff4444"
+                        lightColor: "#ff4444"
                         symbol: "🌡"
                         blinking: false
                     }
@@ -153,7 +153,7 @@ Rectangle {
                     // Low fuel warning
                     WarningLight {
                         active: vehicleData.fuelLevel < 20
-                        color: "#ffaa00"
+                        lightColor: "#ffaa00"
                         symbol: "⛽"
                         blinking: vehicleData.fuelLevel < 10
                     }
@@ -161,7 +161,7 @@ Rectangle {
                     // Battery warning
                     WarningLight {
                         active: vehicleData.batteryVoltage < 12
-                        color: "#ff4444"
+                        lightColor: "#ff4444"
                         symbol: "🔋"
                         blinking: false
                     }
@@ -169,7 +169,7 @@ Rectangle {
                     // Headlights
                     WarningLight {
                         active: vehicleData.headlights
-                        color: "#00aaff"
+                        lightColor: "#00aaff"
                         symbol: "💡"
                         blinking: false
                     }
@@ -177,7 +177,7 @@ Rectangle {
                     // Parking brake
                     WarningLight {
                         active: vehicleData.parkingBrake
-                        color: "#ff4444"
+                        lightColor: "#ff4444"
                         symbol: "🅿"
                         blinking: false
                     }
@@ -185,7 +185,7 @@ Rectangle {
                     // Seatbelt
                     WarningLight {
                         active: !vehicleData.seatbelt && vehicleData.engineRunning
-                        color: "#ff4444"
+                        lightColor: "#ff4444"
                         symbol: "🔗"
                         blinking: true
                     }

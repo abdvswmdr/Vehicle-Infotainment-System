@@ -163,7 +163,10 @@ Window {
         currentModal = ""
     }
     
-    // Escape key to close modal
-    Keys.onEscapePressed: hideModal()
-    focus: true
+    // Focus for key handling
+    Item {
+        anchors.fill: parent
+        focus: true
+        Keys.onEscapePressed: hideModal()
+    }
 }

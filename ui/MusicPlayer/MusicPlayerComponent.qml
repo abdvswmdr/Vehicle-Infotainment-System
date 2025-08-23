@@ -14,7 +14,7 @@ Rectangle {
     property string currentArtist: "Unknown Artist"
     property int currentTime: 0
     property int totalTime: 240
-    property real volume: audioController.targetVolume
+    property real volume: audioController ? audioController.targetVolume : 50
 
     Rectangle {
         id: header
