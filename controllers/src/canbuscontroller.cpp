@@ -28,10 +28,12 @@ CanBusController::CanBusController(QObject *parent)
 
 CanBusController::~CanBusController()
 {
+#ifdef HAVE_QT_SERIALBUS
     if (m_canDevice) {
         m_canDevice->disconnectDevice();
         delete m_canDevice;
     }
+#endif
 }
 
 bool CanBusController::connected() const
@@ -50,6 +52,7 @@ void CanBusController::connectToSimulator()
         return;
     }
 
+#ifdef HAVE_QT_SERIALBUS
     // Try to connect to virtual CAN interface first
     QString errorString;
     auto availableDevices = QCanBus::instance()->availableDevices(QStringLiteral("socketcan"), &errorString);
@@ -64,34 +67,27 @@ void CanBusController::connectToSimulator()
                                                         QStringLiteral("can0"));
     }
 
-    if (!m_canDevice) {
-        m_status = "Failed to create CAN device";
-        emit statusChanged(m_status);
-        emit errorOccurred(m_status);
-        return;
+    if (m_canDevice) {
+        connect(m_canDevice, &QCanBusDevice::framesReceived, this, &CanBusController::handleFramesReceived);
+        connect(m_canDevice, &QCanBusDevice::errorOccurred, this, &CanBusController::handleErrorOccurred);
+        connect(m_canDevice, &QCanBusDevice::stateChanged, this, &CanBusController::handleStateChanged);
+
+        if (m_canDevice->connectDevice()) {
+            m_status = "Connecting to CAN Bus...";
+            emit statusChanged(m_status);
+            return;
+        } else {
+            delete m_canDevice;
+            m_canDevice = nullptr;
+        }
     }
+#endif
 
-    connect(m_canDevice, &QCanBusDevice::framesReceived, this, &CanBusController::handleFramesReceived);
-    connect(m_canDevice, &QCanBusDevice::errorOccurred, this, &CanBusController::handleErrorOccurred);
-    connect(m_canDevice, &QCanBusDevice::stateChanged, this, &CanBusController::handleStateChanged);
-
-    if (!m_canDevice->connectDevice()) {
-        m_status = "Failed to connect: " + m_canDevice->errorString();
-        emit statusChanged(m_status);
-        emit errorOccurred(m_status);
-        delete m_canDevice;
-        m_canDevice = nullptr;
-        
-        // Start simulation mode instead
-        m_status = "Simulation Mode Active";
-        m_connected = true;
-        m_simulationTimer->start(100); // 10Hz update rate
-        emit connectedChanged(m_connected);
-        emit statusChanged(m_status);
-        return;
-    }
-
-    m_status = "Connecting...";
+    // Start simulation mode (fallback or when SerialBus not available)
+    m_status = "Simulation Mode Active";
+    m_connected = true;
+    m_simulationTimer->start(100); // 10Hz update rate
+    emit connectedChanged(m_connected);
     emit statusChanged(m_status);
 }
 
@@ -103,11 +99,13 @@ void CanBusController::disconnectFromSimulator()
 
     m_simulationTimer->stop();
     
+#ifdef HAVE_QT_SERIALBUS
     if (m_canDevice) {
         m_canDevice->disconnectDevice();
         delete m_canDevice;
         m_canDevice = nullptr;
     }
+#endif
 
     m_connected = false;
     m_status = "Disconnected";
@@ -117,14 +115,20 @@ void CanBusController::disconnectFromSimulator()
 
 void CanBusController::sendFrame(quint32 frameId, const QByteArray &data)
 {
+#ifdef HAVE_QT_SERIALBUS
     if (!m_canDevice || !m_connected) {
         return;
     }
 
     QCanBusFrame frame(frameId, data);
     m_canDevice->writeFrame(frame);
+#else
+    Q_UNUSED(frameId)
+    Q_UNUSED(data)
+#endif
 }
 
+#ifdef HAVE_QT_SERIALBUS
 void CanBusController::handleFramesReceived()
 {
     if (!m_canDevice) {
@@ -168,6 +172,7 @@ void CanBusController::handleStateChanged(QCanBusDevice::CanBusDeviceState state
     emit connectedChanged(m_connected);
     emit statusChanged(m_status);
 }
+#endif
 
 void CanBusController::simulateVehicleData()
 {
