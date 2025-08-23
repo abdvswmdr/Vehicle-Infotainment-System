@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 project(VehicleSys LANGUAGES CXX)
 
 
-find_package(Qt5 REQUIRED COMPONENTS Core Quick Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Core Quick Widgets SerialBus)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -17,8 +17,12 @@ add_executable(VehicleSys
     controllers/headers/hvachandler.h
     controllers/src/audiocontroller.cpp
     controllers/headers/audiocontroller.h
+    controllers/src/canbuscontroller.cpp
+    controllers/headers/canbuscontroller.h
+    controllers/src/vehicledatacontroller.cpp
+    controllers/headers/vehicledatacontroller.h
     ${RESOURCES}
 )
 
 target_include_directories(VehicleSys PRIVATE controllers/headers)
-target_link_libraries(VehicleSys Qt5::Quick Qt5::Widgets)
+target_link_libraries(VehicleSys Qt5::Quick Qt5::Widgets Qt5::SerialBus)
