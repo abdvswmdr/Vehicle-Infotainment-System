@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 project(VehicleSys LANGUAGES CXX)
 
 
-find_package(Qt5 REQUIRED COMPONENTS Core Quick Widgets SerialBus)
+find_package(Qt5 REQUIRED COMPONENTS Core Quick Widgets)
+find_package(Qt5 QUIET COMPONENTS SerialBus)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
