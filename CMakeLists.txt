@@ -22,6 +22,8 @@ add_executable(VehicleSys
     controllers/headers/canbuscontroller.h
     controllers/src/vehicledatacontroller.cpp
     controllers/headers/vehicledatacontroller.h
+    controllers/src/mediacontroller.cpp
+    controllers/headers/mediacontroller.h
     ${RESOURCES}
 )
 
