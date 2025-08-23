@@ -2,10 +2,13 @@
 #define CANBUSCONTROLLER_H
 
 #include <QObject>
-#include <QCanBusDevice>
-#include <QCanBusFrame>
 #include <QTimer>
 #include <QString>
+
+#ifdef HAVE_QT_SERIALBUS
+#include <QCanBusDevice>
+#include <QCanBusFrame>
+#endif
 
 class CanBusController : public QObject
 {
@@ -32,15 +35,19 @@ signals:
     void errorOccurred(const QString &error);
 
 private slots:
+#ifdef HAVE_QT_SERIALBUS
     void handleFramesReceived();
     void handleErrorOccurred(QCanBusDevice::CanBusError error);
     void handleStateChanged(QCanBusDevice::CanBusDeviceState state);
+#endif
     void simulateVehicleData();
 
 private:
     void setupSimulatedData();
     
+#ifdef HAVE_QT_SERIALBUS
     QCanBusDevice *m_canDevice;
+#endif
     QTimer *m_simulationTimer;
     bool m_connected;
     QString m_status;

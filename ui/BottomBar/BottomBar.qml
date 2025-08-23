@@ -68,8 +68,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    // Add navigation functionality here
-                    console.log("Map icon clicked")
+                    parent.parent.parent.parent.showDashboard()
                 }
             }
         }
@@ -84,8 +83,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    // Add phone functionality here
-                    console.log("Phone icon clicked")
+                    parent.parent.parent.parent.showPhoneInterface()
                 }
             }
         }
@@ -100,8 +98,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    // Add video functionality here
-                    console.log("Video icon clicked")
+                    parent.parent.parent.parent.showParkAssist()
                 }
             }
         }

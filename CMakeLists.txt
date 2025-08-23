@@ -26,4 +26,10 @@ add_executable(VehicleSys
 )
 
 target_include_directories(VehicleSys PRIVATE controllers/headers)
-target_link_libraries(VehicleSys Qt5::Quick Qt5::Widgets Qt5::SerialBus)
+target_link_libraries(VehicleSys Qt5::Quick Qt5::Widgets)
+
+# Add SerialBus if available, otherwise define fallback
+if(TARGET Qt5::SerialBus)
+    target_link_libraries(VehicleSys Qt5::SerialBus)
+    target_compile_definitions(VehicleSys PRIVATE HAVE_QT_SERIALBUS)
+endif()
