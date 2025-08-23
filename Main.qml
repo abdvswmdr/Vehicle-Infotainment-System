@@ -31,6 +31,10 @@ Window {
     
     BottomBar {
         id: bottomBar
+        onMusicClicked: showMusicPlayer()
+        onDashboardClicked: showDashboard()
+        onPhoneClicked: showPhoneInterface()
+        onParkAssistClicked: showParkAssist()
     }
     
     // Modal overlay

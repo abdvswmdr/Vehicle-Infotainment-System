@@ -9,6 +9,12 @@ Rectangle {
     }
     color: "black"
     height: parent.height / 12
+    
+    // Signals for parent communication
+    signal musicClicked()
+    signal dashboardClicked()
+    signal phoneClicked()
+    signal parkAssistClicked()
 
     Image {
         id: carSettingsIcon
@@ -53,7 +59,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    parent.parent.parent.parent.showMusicPlayer()
+                    bottomBar.musicClicked()
                 }
             }
         }
@@ -68,7 +74,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    parent.parent.parent.parent.showDashboard()
+                    bottomBar.dashboardClicked()
                 }
             }
         }
@@ -83,7 +89,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    parent.parent.parent.parent.showPhoneInterface()
+                    bottomBar.phoneClicked()
                 }
             }
         }
@@ -98,7 +104,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    parent.parent.parent.parent.showParkAssist()
+                    bottomBar.parkAssistClicked()
                 }
             }
         }
