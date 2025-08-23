@@ -1,0 +1,3 @@
+module Dashboard
+Speedometer 1.0 Speedometer.qml
+TachometerGauge 1.0 TachometerGauge.qml
