@@ -10,7 +10,7 @@ System::System(QObject *parent)
     : QObject(parent)
     , m_carLocked(true)      // Default car status is locked
     , m_outdoorTemp(32)      // Default temperature
-    , m_userName("Abduswamad")     // Default user name
+    , m_userName("Artaxerxes I")     // Default user name
     , m_currentTimeTimer(new QTimer(this))
 {
     // Set up the timer for updating current time

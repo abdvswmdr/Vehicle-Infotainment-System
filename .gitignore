@@ -60,3 +60,5 @@ Thumbs.db
 # Ignore prompt files or personal notes
 CLAUDE.md
 *.prompt.md
+summary.md
+reddit_post.md

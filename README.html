@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>README.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h1 id="vehicle-infotainment-system">Vehicle Infotainment System</h1>
+<p>A modern, feature-rich automotive infotainment interface built with
+Qt/QML, showcasing advanced UI development skills and automotive
+software design patterns.</p>
+<h2 id="overview">🚗 Overview</h2>
+<p>VehicleSys is a sophisticated car infotainment system that
+demonstrates professional-grade Qt/QML development. The application
+features a clean, intuitive interface with real-time vehicle data
+management, interactive controls, and modern automotive UI design
+principles.</p>
+<h2 id="features">✨ Features</h2>
+<ul>
+<li><strong>Real-time Vehicle Control</strong>: Lock/unlock
+functionality with visual feedback</li>
+<li><strong>Dual-Zone Climate Control</strong>: Independent driver and
+passenger HVAC systems (50-90°F)</li>
+<li><strong>Intelligent Audio Management</strong>: Dynamic volume
+control with 4-state visual feedback</li>
+<li><strong>Interactive Dashboard</strong>: Temperature monitoring,
+clock display, and user profile</li>
+<li><strong>Navigation Interface</strong>: Search box with map
+integration using MapboxGL</li>
+<li><strong>Quick Access Controls</strong>: Central navigation icons for
+music, map, phone, and video</li>
+<li><strong>Modern UI Design</strong>: Clean, automotive-inspired
+interface with responsive layouts</li>
+<li><strong>Modular Architecture</strong>: Reusable component system
+with clean separation of concerns</li>
+<li><strong>Property System</strong>: Qt’s property system for real-time
+data binding and updates</li>
+</ul>
+<h2 id="technical-stack">🛠️ Technical Stack</h2>
+<ul>
+<li><strong>Framework</strong>: Qt 5.15+ with QML</li>
+<li><strong>Language</strong>: C++ (backend) / QML (frontend)<br />
+</li>
+<li><strong>Build System</strong>: CMake 3.20+</li>
+<li><strong>Architecture</strong>: Model-View-Controller (MVC)
+pattern</li>
+<li><strong>Components</strong>: QtQuick, QtLocation, QtPositioning</li>
+</ul>
+<h2 id="prerequisites">📋 Prerequisites</h2>
+<ul>
+<li>Qt 5.15 or higher</li>
+<li>CMake 3.20+</li>
+<li>C++17 compatible compiler</li>
+<li>Git</li>
+</ul>
+<h3 id="linux-ubuntudebian">Linux (Ubuntu/Debian)</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install qt5-default qtdeclarative5-dev qtpositioning5-dev qtlocation5-dev cmake build-essential</span></code></pre></div>
+<h2 id="building-running">🚀 Building &amp; Running</h2>
+<ol type="1">
+<li><p><strong>Clone the repository</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="pp">[</span><span class="ss">repository</span><span class="pp">-</span><span class="ss">url</span><span class="pp">]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Vehicle-Infotainment</span></code></pre></div></li>
+<li><p><strong>Build the project</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> ..</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div></li>
+<li><p><strong>Run the application</strong></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./VehicleSys</span></span></code></pre></div></li>
+</ol>
+<h2 id="project-structure">🏗️ Project Structure</h2>
+<pre><code>VehicleSys/
+├── CMakeLists.txt          # Build configuration
+├── main.cpp                # Application entry point
+├── qml.qrc                 # Resource file
+├── controllers/            # Backend logic
+│   ├── headers/
+│   │   ├── system.h       # Core system controller
+│   │   ├── hvachandler.h  # Climate control management
+│   │   └── audiocontroller.h # Volume control system
+│   └── src/
+│       ├── system.cpp     # System controller implementation
+│       ├── hvachandler.cpp # HVAC logic implementation
+│       └── audiocontroller.cpp # Audio control implementation
+├── ui/                    # QML components
+│   ├── BottomBar/         # Interactive bottom controls
+│   │   ├── BottomBar.qml  # Main bottom interface
+│   │   ├── HVACComponent.qml # Temperature controls
+│   │   └── VolumeControlComponent.qml # Audio controls
+│   ├── LeftScreen/        # Left dashboard panel
+│   └── RightScreen/       # Map and navigation interface
+│       ├── RightScreen.qml # Main right panel
+│       └── NavigationSearchBox.qml # Search functionality
+├── images/                # UI assets
+└── README.md</code></pre>
+<h2 id="architecture-highlights">🎯 Architecture Highlights</h2>
+<ul>
+<li><strong>Multi-Controller Backend</strong>: Specialized C++
+controllers for system, HVAC, and audio management</li>
+<li><strong>Component Modularity</strong>: Reusable QML components with
+configurable property bindings</li>
+<li><strong>Signal-Slot Pattern</strong>: Reactive programming for
+real-time UI updates</li>
+<li><strong>Event-Driven Design</strong>: Mouse area interactions with
+immediate visual feedback</li>
+<li><strong>Resource Management</strong>: Efficient asset loading
+through Qt’s resource system</li>
+<li><strong>Property Binding</strong>: Automatic UI synchronization with
+backend data changes</li>
+</ul>
+<h2 id="development-features">🔧 Development Features</h2>
+<ul>
+<li><strong>Advanced Property System</strong>: Q_PROPERTY macros for
+seamless C++/QML data binding</li>
+<li><strong>Interactive Controls</strong>: Temperature
+increment/decrement with boundary checking</li>
+<li><strong>Dynamic UI States</strong>: Volume icons that change based
+on audio level</li>
+<li><strong>Timer-Based Feedback</strong>: Temporary UI state changes
+with automatic restoration</li>
+<li><strong>Event System</strong>: Comprehensive mouse area handling for
+user interactions</li>
+<li><strong>Memory Management</strong>: RAII principles and Qt’s
+parent-child object model</li>
+<li><strong>Type Safety</strong>: Strong typing with Qt’s meta-object
+system</li>
+</ul>
+<h2 id="ui-components">🎨 UI Components</h2>
+<h3 id="interactive-bottom-bar">Interactive Bottom Bar</h3>
+<ul>
+<li><strong>HVACComponent</strong>: Dual-zone temperature controls with
++/- buttons and live display</li>
+<li><strong>VolumeControlComponent</strong>: Smart audio control with
+4-state icon system</li>
+<li><strong>Navigation Icons</strong>: Quick access buttons for music,
+map, phone, and video apps</li>
+</ul>
+<h3 id="right-screen-panel">Right Screen Panel</h3>
+<ul>
+<li><strong>NavigationSearchBox</strong>: Interactive search with
+dynamic placeholder text</li>
+<li><strong>Status Bar</strong>: Lock control, real-time clock,
+temperature, recording indicator, user profile</li>
+<li><strong>Map Integration</strong>: MapboxGL rendering with navigation
+capabilities</li>
+</ul>
+<h3 id="system-elements">System Elements</h3>
+<ul>
+<li><strong>Dynamic Icons</strong>: Context-aware visual feedback (lock
+states, volume levels)</li>
+<li><strong>Responsive Layout</strong>: Components that scale with
+screen dimensions</li>
+<li><strong>Real-time Updates</strong>: Live data binding with automatic
+UI refresh</li>
+</ul>
+<h2 id="learning-outcomes">📚 Learning Outcomes</h2>
+<p>This project demonstrates proficiency in: - <strong>Advanced Qt/QML
+Development</strong>: Complex application architecture with multiple
+interacting components - <strong>C++/QML Integration</strong>: Seamless
+data flow using property system, signals, and invokable methods<br />
+- <strong>Interactive UI Design</strong>: Touch-friendly automotive
+interface with immediate feedback - <strong>Component-Based
+Architecture</strong>: Reusable, configurable QML components with clean
+interfaces - <strong>Event-Driven Programming</strong>: Responsive user
+interaction handling with state management - <strong>Build System
+Mastery</strong>: CMake configuration with automatic MOC/UIC processing
+- <strong>Software Engineering</strong>: Clean code practices,
+documentation, and version control</p>
+<h2 id="future-enhancements">🔄 Future Enhancements</h2>
+<ul>
+<li><strong>Media Playback</strong>: Full music player with playlist
+management</li>
+<li><strong>Advanced Climate</strong>: Automatic climate zones with
+sensors</li>
+<li><strong>Vehicle Diagnostics</strong>: Real-time performance
+monitoring dashboard<br />
+</li>
+<li><strong>Connectivity</strong>: Bluetooth device pairing and
+management</li>
+<li><strong>Voice Commands</strong>: Speech recognition for hands-free
+control</li>
+<li><strong>Customization</strong>: User profiles with personalized
+settings</li>
+<li><strong>Animation System</strong>: Smooth transitions and
+micro-interactions</li>
+</ul>
+<h2 id="contributing">🤝 Contributing</h2>
+<p>This is a <strong>personal learning project</strong> designed to
+enhance C++ and Qt/QML development skills. The project demonstrates
+software engineering practices and automotive UI development techniques.
+Feedback and suggestions for improvements are welcome!</p>
+<h2 id="license">📄 License</h2>
+<p>This project is open source and available under the <a
+href="LICENSE">MIT License</a>.</p>
+<hr />
+<p><em>Built with Qt/QML - Showcasing modern automotive software
+development</em></p>
+
+</body>
+</html>
