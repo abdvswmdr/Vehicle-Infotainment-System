@@ -85,10 +85,10 @@ void VehicleDataController::processCanFrame(quint32 frameId, const QByteArray &d
         
     case 0x104: // Turn signals and lights frame
         if (data.size() >= 1) {
-            quint8 signals = static_cast<quint8>(data[0]);
-            setLeftTurnSignal(signals & 0x01);
-            setRightTurnSignal(signals & 0x02);
-            setHeadlights(signals & 0x04);
+            quint8 signalBits = static_cast<quint8>(data[0]);
+            setLeftTurnSignal(signalBits & 0x01);
+            setRightTurnSignal(signalBits & 0x02);
+            setHeadlights(signalBits & 0x04);
         }
         break;
         

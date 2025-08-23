@@ -234,11 +234,11 @@ void CanBusController::simulateVehicleData()
 
     // Turn signals and lights
     QByteArray signalsData;
-    quint8 signals = 0;
-    if (m_leftTurnSignal) signals |= 0x01;
-    if (m_rightTurnSignal) signals |= 0x02;
-    if (m_headlights) signals |= 0x04;
-    signalsData.append(static_cast<char>(signals));
+    quint8 signalBits = 0;
+    if (m_leftTurnSignal) signalBits |= 0x01;
+    if (m_rightTurnSignal) signalBits |= 0x02;
+    if (m_headlights) signalBits |= 0x04;
+    signalsData.append(static_cast<char>(signalBits));
     emit frameReceived(0x104, signalsData); // Signals frame
 }
 
