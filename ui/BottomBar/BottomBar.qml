@@ -53,8 +53,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    // Add music app functionality here
-                    console.log("Music icon clicked")
+                    parent.parent.parent.parent.showMusicPlayer()
                 }
             }
         }
