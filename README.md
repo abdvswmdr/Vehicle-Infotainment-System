@@ -6,6 +6,9 @@ A modern, feature-rich automotive infotainment interface built with Qt/QML, show
 
 VehicleSys is a sophisticated car infotainment system that demonstrates professional-grade Qt/QML development. The application features a clean, intuitive interface with real-time vehicle data management, interactive controls, and modern automotive UI design principles.
 
+<img width="1030" height="826" alt="image" src="https://github.com/user-attachments/assets/db96e3ba-e5ea-4e8a-8cc5-13212c242d64" />
+
+
 ![Vehicle Infotainment System Demo](images/region_rec_20250823_093651_medium_reddit.gif)
 
 ## ✨ Features
