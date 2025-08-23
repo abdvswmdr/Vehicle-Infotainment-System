@@ -2,12 +2,15 @@
 #define MEDIACONTROLLER_H
 
 #include <QObject>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
 #include <QUrl>
 #include <QStringList>
 #include <QDir>
 #include <QTimer>
+
+#ifdef HAVE_QT_MULTIMEDIA
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#endif
 
 class MediaController : public QObject
 {
@@ -75,23 +78,30 @@ signals:
     void mediaError(const QString &error);
 
 private slots:
+#ifdef HAVE_QT_MULTIMEDIA
     void handleStateChanged(QMediaPlayer::State state);
     void handlePositionChanged(qint64 position);
     void handleDurationChanged(qint64 duration);
     void handleCurrentMediaChanged(const QMediaContent &content);
     void handleMediaStatusChanged(QMediaPlayer::MediaStatus status);
     void handleError(QMediaPlayer::Error error);
+#endif
     void updateCurrentTime();
+    void simulatePlayback();
 
 private:
     void extractMetadata(const QString &filePath);
     QString getFileTitle(const QString &filePath);
     QString getFileArtist(const QString &filePath);
     QStringList getSupportedAudioFiles(const QDir &dir);
+    void loadCurrentTrack();
     
+#ifdef HAVE_QT_MULTIMEDIA
     QMediaPlayer *m_player;
     QMediaPlaylist *m_playlist;
+#endif
     QTimer *m_positionTimer;
+    QTimer *m_simulationTimer;
     
     // Current track info
     QString m_currentTitle;
@@ -103,9 +113,11 @@ private:
     int m_volume;
     bool m_shuffle;
     bool m_repeat;
+    bool m_isPlaying;
     
     // File list for playlist display
     QStringList m_playlistFiles;
+    int m_currentIndex;
     
     // Supported audio formats
     QStringList m_supportedFormats;

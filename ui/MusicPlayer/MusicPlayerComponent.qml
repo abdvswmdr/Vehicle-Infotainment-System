@@ -9,12 +9,12 @@ Rectangle {
     border.color: "#333"
     border.width: 1
 
-    property bool isPlaying: false
-    property string currentSong: "No Track Selected"
-    property string currentArtist: "Unknown Artist"
-    property int currentTime: 0
-    property int totalTime: 240
-    property real volume: audioController ? audioController.targetVolume : 50
+    property bool isPlaying: mediaController ? mediaController.isPlaying : false
+    property string currentSong: mediaController ? mediaController.currentTitle : "No Track Selected"
+    property string currentArtist: mediaController ? mediaController.currentArtist : "Unknown Artist"
+    property int currentTime: mediaController ? Math.floor(mediaController.currentTime / 1000) : 0
+    property int totalTime: mediaController ? Math.floor(mediaController.totalTime / 1000) : 240
+    property real volume: mediaController ? mediaController.volume : 50
 
     Rectangle {
         id: header
@@ -113,8 +113,10 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    var newTime = (mouse.x / width) * totalTime
-                    currentTime = newTime
+                    if (mediaController) {
+                        var newTime = (mouse.x / width) * totalTime
+                        mediaController.seek(newTime * 1000) // Convert to milliseconds
+                    }
                 }
             }
         }
@@ -162,7 +164,11 @@ Rectangle {
             
             MouseArea {
                 anchors.fill: parent
-                onClicked: previousTrack()
+                onClicked: {
+                    if (mediaController) {
+                        mediaController.previous()
+                    }
+                }
             }
         }
 
@@ -182,7 +188,11 @@ Rectangle {
             
             MouseArea {
                 anchors.fill: parent
-                onClicked: togglePlayPause()
+                onClicked: {
+                    if (mediaController) {
+                        mediaController.togglePlayPause()
+                    }
+                }
             }
             
             Behavior on color {
@@ -206,7 +216,11 @@ Rectangle {
             
             MouseArea {
                 anchors.fill: parent
-                onClicked: nextTrack()
+                onClicked: {
+                    if (mediaController) {
+                        mediaController.next()
+                    }
+                }
             }
         }
     }
@@ -247,75 +261,18 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    var newVolume = (mouse.x / width) * 100
-                    audioController.setTargetVolume(Math.round(newVolume))
+                    if (mediaController) {
+                        var newVolume = (mouse.x / width) * 100
+                        mediaController.setVolume(Math.round(newVolume))
+                    }
                 }
             }
         }
     }
-
-    // Mock playlist
-    property var playlist: [
-        { title: "Highway Dreams", artist: "Electric Vibes", duration: 240 },
-        { title: "City Nights", artist: "Neon Pulse", duration: 195 },
-        { title: "Journey Home", artist: "Acoustic Soul", duration: 268 },
-        { title: "Digital Horizons", artist: "Synth Wave", duration: 312 },
-        { title: "Midnight Drive", artist: "Chrome Hearts", duration: 289 }
-    ]
-    
-    property int currentTrackIndex: 0
 
     function formatTime(seconds) {
         var mins = Math.floor(seconds / 60)
         var secs = Math.floor(seconds % 60)
         return mins + ":" + (secs < 10 ? "0" : "") + secs
-    }
-
-    function togglePlayPause() {
-        isPlaying = !isPlaying
-        if (isPlaying) {
-            playbackTimer.start()
-        } else {
-            playbackTimer.stop()
-        }
-    }
-
-    function nextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length
-        loadCurrentTrack()
-    }
-
-    function previousTrack() {
-        currentTrackIndex = currentTrackIndex > 0 ? currentTrackIndex - 1 : playlist.length - 1
-        loadCurrentTrack()
-    }
-
-    function loadCurrentTrack() {
-        var track = playlist[currentTrackIndex]
-        currentSong = track.title
-        currentArtist = track.artist
-        totalTime = track.duration
-        currentTime = 0
-    }
-
-    Timer {
-        id: playbackTimer
-        interval: 1000
-        running: false
-        repeat: true
-        onTriggered: {
-            if (isPlaying && currentTime < totalTime) {
-                currentTime++
-            } else if (currentTime >= totalTime) {
-                nextTrack()
-                if (isPlaying) {
-                    togglePlayPause()
-                }
-            }
-        }
-    }
-
-    Component.onCompleted: {
-        loadCurrentTrack()
     }
 }
