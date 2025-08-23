@@ -6,6 +6,8 @@ A modern, feature-rich automotive infotainment interface built with Qt/QML, show
 
 VehicleSys is a sophisticated car infotainment system that demonstrates professional-grade Qt/QML development. The application features a clean, intuitive interface with real-time vehicle data management, interactive controls, and modern automotive UI design principles.
 
+![Vehicle Infotainment System Demo](images/region_rec_20250823_093651_medium_reddit.gif)
+
 ## ✨ Features
 
 - **Real-time Vehicle Control**: Lock/unlock functionality with visual feedback
@@ -135,8 +137,9 @@ This project demonstrates proficiency in:
 - **Build System Mastery**: CMake configuration with automatic MOC/UIC processing
 - **Software Engineering**: Clean code practices, documentation, and version control
 
-## 🔄 Future Enhancements
 
+## 🔄 Future Enhancements
+<!--
 - **Media Playback**: Full music player with playlist management
 - **Advanced Climate**: Automatic climate zones with sensors
 - **Vehicle Diagnostics**: Real-time performance monitoring dashboard  
@@ -144,7 +147,7 @@ This project demonstrates proficiency in:
 - **Voice Commands**: Speech recognition for hands-free control
 - **Customization**: User profiles with personalized settings
 - **Animation System**: Smooth transitions and micro-interactions
-
+-->
 ## 🤝 Contributing
 
 This is a **personal learning project** designed to enhance C++ and Qt/QML development skills. The project demonstrates software engineering practices and automotive UI development techniques. Feedback and suggestions for improvements are welcome!
