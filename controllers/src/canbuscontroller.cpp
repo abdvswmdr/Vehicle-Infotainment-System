@@ -1,11 +1,16 @@
 #include "canbuscontroller.h"
-#include <QCanBus>
 #include <QDebug>
 #include <QRandomGenerator>
 
+#ifdef HAVE_QT_SERIALBUS
+#include <QCanBus>
+#endif
+
 CanBusController::CanBusController(QObject *parent)
     : QObject(parent)
+#ifdef HAVE_QT_SERIALBUS
     , m_canDevice(nullptr)
+#endif
     , m_simulationTimer(new QTimer(this))
     , m_connected(false)
     , m_status("Disconnected")
