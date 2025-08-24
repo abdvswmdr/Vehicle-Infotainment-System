@@ -61,6 +61,7 @@ private:
     bool m_leftTurnSignal;
     bool m_rightTurnSignal;
     bool m_headlights;
+    bool m_engineRunning;
 };
 
 #endif // CANBUSCONTROLLER_H
