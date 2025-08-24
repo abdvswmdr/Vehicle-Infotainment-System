@@ -306,6 +306,83 @@ Rectangle {
                     }
                 }
             }
+
+            // CAN Mode Selector
+            Rectangle {
+                width: 280
+                height: 60
+                color: "#1a1a1a"
+                radius: 8
+                border.color: "#333"
+                border.width: 1
+
+                Column {
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    spacing: 8
+
+                    Text {
+                        text: "CAN MODE"
+                        color: "#666"
+                        font.pixelSize: 12
+                        font.bold: true
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Row {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        spacing: 15
+
+                        Rectangle {
+                            width: 100
+                            height: 25
+                            color: canBusController.status === "Simulation Mode Active" ? "#004488" : "#333"
+                            radius: 4
+                            border.color: canBusController.status === "Simulation Mode Active" ? "#0088ff" : "#555"
+                            border.width: 1
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: "Simulation"
+                                color: canBusController.status === "Simulation Mode Active" ? "#ffffff" : "#aaa"
+                                font.pixelSize: 10
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    // TODO: Add method to switch to simulation mode
+                                    console.log("Switching to simulation mode")
+                                }
+                            }
+                        }
+
+                        Rectangle {
+                            width: 100
+                            height: 25
+                            color: canBusController.status !== "Simulation Mode Active" ? "#004400" : "#333"
+                            radius: 4
+                            border.color: canBusController.status !== "Simulation Mode Active" ? "#00aa44" : "#555"
+                            border.width: 1
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: "CAN Control"
+                                color: canBusController.status !== "Simulation Mode Active" ? "#ffffff" : "#aaa"
+                                font.pixelSize: 10
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    // TODO: Add method to switch to CAN mode
+                                    console.log("Switching to CAN control mode")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
