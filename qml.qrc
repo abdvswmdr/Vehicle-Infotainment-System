@@ -7,6 +7,21 @@
         <file>ui/RightScreen/RightScreen.qml</file>
         <file>ui/RightScreen/NavigationSearchBox.qml</file>
         <file>ui/LeftScreen/LeftScreen.qml</file>
+        <file>ui/Dashboard/VehicleDashboard.qml</file>
+        <file>ui/Dashboard/Speedometer.qml</file>
+        <file>ui/Dashboard/TachometerGauge.qml</file>
+        <file>ui/Dashboard/CircularGauge.qml</file>
+        <file>ui/Dashboard/WarningLight.qml</file>
+        <file>ui/Dashboard/qmldir</file>
+        <file>ui/MusicPlayer/MusicPlayerComponent.qml</file>
+        <file>ui/MusicPlayer/qmldir</file>
+        <file>ui/Phone/PhoneInterface.qml</file>
+        <file>ui/Phone/qmldir</file>
+        <file>ui/ParkAssist/ParkAssistComponent.qml</file>
+        <file>ui/ParkAssist/qmldir</file>
+        <file>ui/BottomBar/qmldir</file>
+        <file>ui/RightScreen/qmldir</file>
+        <file>ui/LeftScreen/qmldir</file>
 	<file>images/carRender.png</file>
 	<file>images/carSettingsIcon.png</file>
 	<file>images/padlock.png</file>

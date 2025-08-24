@@ -1,0 +1,67 @@
+#ifndef CANBUSCONTROLLER_H
+#define CANBUSCONTROLLER_H
+
+#include <QObject>
+#include <QTimer>
+#include <QString>
+
+#ifdef HAVE_QT_SERIALBUS
+#include <QCanBusDevice>
+#include <QCanBusFrame>
+#endif
+
+class CanBusController : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(bool connected READ connected NOTIFY connectedChanged)
+    Q_PROPERTY(QString status READ status NOTIFY statusChanged)
+
+public:
+    explicit CanBusController(QObject *parent = nullptr);
+    ~CanBusController();
+
+    bool connected() const;
+    QString status() const;
+
+public slots:
+    void connectToSimulator();
+    void disconnectFromSimulator();
+    void sendFrame(quint32 frameId, const QByteArray &data);
+
+signals:
+    void connectedChanged(bool connected);
+    void statusChanged(const QString &status);
+    void frameReceived(quint32 frameId, const QByteArray &data);
+    void errorOccurred(const QString &error);
+
+private slots:
+#ifdef HAVE_QT_SERIALBUS
+    void handleFramesReceived();
+    void handleErrorOccurred(QCanBusDevice::CanBusError error);
+    void handleStateChanged(QCanBusDevice::CanBusDeviceState state);
+#endif
+    void simulateVehicleData();
+
+private:
+    void setupSimulatedData();
+    void connectToBus(const QString &interface);
+    
+#ifdef HAVE_QT_SERIALBUS
+    QCanBusDevice *m_canDevice;
+#endif
+    QTimer *m_simulationTimer;
+    bool m_connected;
+    QString m_status;
+    
+    // Simulated vehicle data counters
+    int m_speed;
+    int m_rpm;
+    int m_fuelLevel;
+    int m_engineTemp;
+    bool m_leftTurnSignal;
+    bool m_rightTurnSignal;
+    bool m_headlights;
+    bool m_engineRunning;
+};
+
+#endif // CANBUSCONTROLLER_H

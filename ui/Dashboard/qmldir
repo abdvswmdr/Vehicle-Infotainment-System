@@ -1,0 +1,6 @@
+module Dashboard
+Speedometer 1.0 Speedometer.qml
+TachometerGauge 1.0 TachometerGauge.qml
+VehicleDashboard 1.0 VehicleDashboard.qml
+CircularGauge 1.0 CircularGauge.qml
+WarningLight 1.0 WarningLight.qml
