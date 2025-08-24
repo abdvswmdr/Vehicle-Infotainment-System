@@ -48,79 +48,96 @@ void VehicleDataController::processCanFrame(quint32 frameId, const QByteArray &d
     }
 
     switch (frameId) {
-    case 0x100: // Speed frame
-        if (data.size() >= 2) {
-            int speed = static_cast<quint8>(data[0]) | (static_cast<quint8>(data[1]) << 8);
-            setSpeed(speed);
-        }
-        break;
-        
-    case 0x101: // RPM frame
-        if (data.size() >= 2) {
-            int rpm = static_cast<quint8>(data[0]) | (static_cast<quint8>(data[1]) << 8);
+    case 0x100: // Engine_Data (256 decimal) - Engine speed, load, temperature, fuel
+        if (data.size() >= 8) {
+            // Engine Speed (RPM) - bytes 0-1, scale 0.25
+            int rpm = (static_cast<quint8>(data[0]) | (static_cast<quint8>(data[1]) << 8)) * 0.25;
             setRpm(rpm);
             
-            // Update engine running state based on RPM
+            // Engine running state based on RPM
             bool wasRunning = m_engineRunning;
             bool running = rpm > 500;
             if (running != wasRunning) {
                 setEngineRunning(running);
             }
+            
+            // Engine Coolant Temperature - byte 3, scale 1, offset -40
+            if (data.size() >= 4) {
+                int temp = static_cast<quint8>(data[3]) - 40;
+                setEngineTemperature(temp);
+            }
+            
+            // Fuel Level - byte 7, scale 0.392157 (percent)
+            if (data.size() >= 8) {
+                int fuelLevel = static_cast<quint8>(data[7]) * 0.392157;
+                setFuelLevel(fuelLevel);
+            }
         }
         break;
         
-    case 0x102: // Fuel level frame
-        if (data.size() >= 1) {
-            int fuelLevel = static_cast<quint8>(data[0]);
-            setFuelLevel(fuelLevel);
-        }
-        break;
-        
-    case 0x103: // Engine temperature frame
-        if (data.size() >= 1) {
-            int temp = static_cast<quint8>(data[0]);
-            setEngineTemperature(temp);
-        }
-        break;
-        
-    case 0x104: // Turn signals and lights frame
-        if (data.size() >= 1) {
-            quint8 signalBits = static_cast<quint8>(data[0]);
-            setLeftTurnSignal(signalBits & 0x01);
-            setRightTurnSignal(signalBits & 0x02);
-            setHeadlights(signalBits & 0x04);
-        }
-        break;
-        
-    case 0x105: // Vehicle status frame
+    case 0x200: // Vehicle_Speed (512 decimal) - Vehicle speed
         if (data.size() >= 2) {
-            quint8 status1 = static_cast<quint8>(data[0]);
-            quint8 status2 = static_cast<quint8>(data[1]);
-            
-            setParkingBrake(status1 & 0x01);
-            setSeatbelt(status1 & 0x02);
-            setDoorOpen(status1 & 0x04);
-            
-            // Gear calculation from status2
-            int gearValue = status2 & 0x0F;
+            // Vehicle Speed - bytes 0-1, scale 0.1 km/h
+            int speed = (static_cast<quint8>(data[0]) | (static_cast<quint8>(data[1]) << 8)) * 0.1;
+            setSpeed(speed);
+        }
+        break;
+        
+    case 0x400: // Transmission_Data (1024 decimal) - Gear position
+        if (data.size() >= 3) {
+            // Gear Position - lower 4 bits of byte 0
+            int gearValue = static_cast<quint8>(data[0]) & 0x0F;
             QString gearStr;
             switch (gearValue) {
             case 0: gearStr = "P"; break;
             case 1: gearStr = "R"; break;
             case 2: gearStr = "N"; break;
             case 3: gearStr = "D"; break;
-            case 4: gearStr = "D2"; break;
-            case 5: gearStr = "D3"; break;
+            case 4: gearStr = "S"; break; // Sport mode
+            case 5: gearStr = "M1"; break; // Manual 1st
+            case 6: gearStr = "M2"; break; // Manual 2nd
+            case 7: gearStr = "M3"; break; // Manual 3rd
+            case 8: gearStr = "M4"; break; // Manual 4th
+            case 9: gearStr = "M5"; break; // Manual 5th
+            case 10: gearStr = "M6"; break; // Manual 6th
             default: gearStr = "?"; break;
             }
             setGear(gearStr);
+            
+            // Park status from bit 1 of byte 2
+            if (data.size() >= 3) {
+                quint8 status = static_cast<quint8>(data[2]);
+                setParkingBrake((status >> 1) & 0x01);
+            }
         }
         break;
         
-    case 0x106: // Battery voltage frame
-        if (data.size() >= 1) {
-            int voltage = static_cast<quint8>(data[0]);
+    case 0x500: // Battery_Status (1280 decimal) - Battery voltage
+        if (data.size() >= 3) {
+            // Battery Voltage - bytes 0-1, scale 0.01 V
+            int voltage = (static_cast<quint8>(data[0]) | (static_cast<quint8>(data[1]) << 8)) * 0.01;
             setBatteryVoltage(voltage);
+        }
+        break;
+        
+    case 0x600: // Warning_Lights (1536 decimal) - Turn signals and indicators
+        if (data.size() >= 2) {
+            quint8 warnings = static_cast<quint8>(data[0]);
+            quint8 signalBits = static_cast<quint8>(data[1]);
+            
+            // Turn signals from byte 1
+            setLeftTurnSignal(signalBits & 0x01);
+            setRightTurnSignal((signalBits >> 1) & 0x01);
+            setHeadlights((signalBits >> 2) & 0x01);
+        }
+        break;
+        
+    case 0x700: // Door_Status (1792 decimal) - Door and closure status
+        if (data.size() >= 1) {
+            quint8 doorStatus = static_cast<quint8>(data[0]);
+            // Set door open if any door is open
+            bool anyDoorOpen = (doorStatus & 0x0F) != 0; // Check first 4 bits (doors)
+            setDoorOpen(anyDoorOpen);
         }
         break;
         

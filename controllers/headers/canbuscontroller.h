@@ -44,6 +44,7 @@ private slots:
 
 private:
     void setupSimulatedData();
+    void connectToBus(const QString &interface);
     
 #ifdef HAVE_QT_SERIALBUS
     QCanBusDevice *m_canDevice;

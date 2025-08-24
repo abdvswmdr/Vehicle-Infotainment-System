@@ -1,0 +1,79 @@
+# Ignore build directories
+build/
+Build/
+out/
+dist/
+
+# Ignore log files
+logs/
+*.log
+
+# Ignore install directories
+install/
+
+# Qt-specific
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.tmp
+.#*
+*.*#
+core
+!core/
+Makefile*
+*build-*
+*.qm
+*.prl
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+cmake_build_debug/
+cmake_build_release/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Emacs
+.dir-locals.el
+.projectile
+*~
+\#*\#
+.\#*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Ignore prompt files or personal notes
+CLAUDE.md
+*.prompt.md
+summary.md
+reddit_post.md
+CAN_INTEGRATION.md
+*.cds
+*.dbc
+CANDEVSTUDIO_STEP_BY_STEP.md    
+CANDEVSTUDIO_TUTORIAL.md        
+CAN_PROTOCOL_GUIDE.md
+CDS_PROJECT_FILES.md
+quick_test_script.py
+FINAL_DELIVERABLES.md
+README_CAN_INTEGRATION.md
+simple_engine_test.json
+TESTING_GUIDE.md                
+VEHICLE_SIMULATION_EXAMPLES.md  
+complete_vehicle_sim.json
+

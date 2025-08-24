@@ -48,23 +48,31 @@ QString CanBusController::status() const
 
 void CanBusController::connectToSimulator()
 {
+    connectToBus("vcan0");
+}
+
+void CanBusController::connectToBus(const QString &interface)
+{
     if (m_connected) {
         return;
     }
 
 #ifdef HAVE_QT_SERIALBUS
-    // Try to connect to virtual CAN interface first
-    QString errorString;
-    auto availableDevices = QCanBus::instance()->availableDevices(QStringLiteral("socketcan"), &errorString);
+    // Try to connect to specified interface (e.g., vcan0 for virtual CAN)
+    qDebug() << "Attempting to connect to CAN interface:" << interface;
     
-    if (!availableDevices.isEmpty()) {
-        // Use real CAN interface if available
-        m_canDevice = QCanBus::instance()->createDevice(QStringLiteral("socketcan"), 
-                                                        availableDevices.first().name());
-    } else {
-        // Fallback to virtual CAN for simulation
-        m_canDevice = QCanBus::instance()->createDevice(QStringLiteral("virtualcan"), 
-                                                        QStringLiteral("can0"));
+    // Create device using socketcan plugin with specified interface
+    m_canDevice = QCanBus::instance()->createDevice(QStringLiteral("socketcan"), interface);
+    
+    if (!m_canDevice) {
+        qDebug() << "Failed to create CAN device for interface:" << interface;
+        // Check available devices
+        QString errorString;
+        auto availableDevices = QCanBus::instance()->availableDevices(QStringLiteral("socketcan"), &errorString);
+        qDebug() << "Available devices:" << availableDevices.size();
+        for (const auto &device : availableDevices) {
+            qDebug() << "  -" << device.name() << device.description();
+        }
     }
 
     if (m_canDevice) {
