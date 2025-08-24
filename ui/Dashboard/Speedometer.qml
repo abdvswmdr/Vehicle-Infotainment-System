@@ -86,7 +86,7 @@ Rectangle {
         rotation: needleAngle
         
         Behavior on rotation {
-            SmoothedAnimation { velocity: 120; duration: 300 }
+            SmoothedAnimation { duration: 300 }
         }
     }
     

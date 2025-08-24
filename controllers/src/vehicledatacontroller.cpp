@@ -141,6 +141,14 @@ void VehicleDataController::processCanFrame(quint32 frameId, const QByteArray &d
         }
         break;
         
+    case 0x300: // HVAC_Status (768 decimal) - HVAC and climate control
+        if (data.size() >= 1) {
+            // AC Status, Heater Status, Fan Speed, Temperature settings
+            // For now, just acknowledge the frame to prevent "unknown" errors
+            // Individual HVAC signals can be added later if needed
+        }
+        break;
+        
     default:
         qDebug() << "Unknown CAN frame ID:" << Qt::hex << frameId;
         break;
