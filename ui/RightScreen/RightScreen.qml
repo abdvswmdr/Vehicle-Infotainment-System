@@ -136,5 +136,5 @@ Rectangle {
 	height: parent.height / 14
     }
 
-    width: parent.width * 2/3
+    width: parent.width * 1.6/3    // this sets width ratio for right/left screen
 }
