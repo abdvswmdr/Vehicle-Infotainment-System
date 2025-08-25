@@ -33,7 +33,7 @@ Rectangle {
             // Draw RPM markings
             ctx.strokeStyle = "#666"
             ctx.lineWidth = 1.5
-            ctx.font = "10px sans-serif"
+            ctx.font = "bold 14px sans-serif"
             ctx.fillStyle = "#333"
             ctx.textAlign = "center"
             
@@ -112,7 +112,8 @@ Rectangle {
         anchors.topMargin: 1
         text: "RPM x1000"
         color: "#F54927"
-        font.pixelSize: 12
+        font.pixelSize: 16
+        font.bold: true
         font.family: "sans-serif"
     }
     
@@ -132,7 +133,8 @@ Rectangle {
             anchors.centerIn: parent
             text: rpm.toString()
             color: rpm > 6000 ? "#ff4444" : "#00ff00"
-            font.pixelSize: 11
+            font.pixelSize: 16
+            font.bold: true
             font.family: "monospace"
             
             Behavior on color {

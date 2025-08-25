@@ -105,7 +105,8 @@ Rectangle {
         anchors.topMargin: 15
         text: title
         color: "#666"
-        font.pixelSize: 9
+        font.pixelSize: 12
+        font.bold: true
         font.bold: true
     }
     
@@ -116,7 +117,8 @@ Rectangle {
         anchors.bottomMargin: 8
         text: Math.round(value) + unit
         color: value > warningThreshold ? "#ff4444" : gaugeColor
-        font.pixelSize: 12
+        font.pixelSize: 16
+        font.bold: true
         font.bold: true
         
         Behavior on color {

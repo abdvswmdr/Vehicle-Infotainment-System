@@ -8,7 +8,7 @@ Rectangle {
 
   property int speed: vehicleData.speed
   property int maxSpeed: 160
-  property real needleAngle: (speed / maxSpeed) * 240 - 120 // -120 to +120 degrees
+  property real needleAngle: (speed / maxSpeed) * 270 - 135 // Start from -135 degrees (vertical top) for proper 0 alignment
 
   Canvas {
   id: speedometerCanvas
@@ -33,12 +33,12 @@ Rectangle {
     // Draw speed markings
     ctx.strokeStyle = "#666"
     ctx.lineWidth = 2
-    ctx.font = "12px sans-serif"
+    ctx.font = "bold 16px sans-serif"
     ctx.fillStyle = "#333"
     ctx.textAlign = "center"
             
     for (var i = 0; i <= maxSpeed; i += 20) {
-      var angle = (i / maxSpeed) * 240 - 120
+      var angle = (i / maxSpeed) * 270 - 135
       var radian = angle * Math.PI / 180
       var x1 = centerX + (radius - 15) * Math.cos(radian)
       var y1 = centerY + (radius - 15) * Math.sin(radian)
@@ -106,7 +106,8 @@ Rectangle {
   anchors.centerIn: parent
   text: speed + " km/h"
   color: "#00ff00"
-  font.pixelSize: 12
+  font.pixelSize: 16
+  font.bold: true
   font.family: "monospace"
 }
 }
