@@ -221,7 +221,7 @@ Rectangle {
         }
     }
     
-    width: parent.width * 1.6/3    // this sets width ratio for right/left screen
+    width: parent.width * 1.68/3    // this sets width ratio for right/left screen
     
     function showMap() {
         currentContent = "map"
