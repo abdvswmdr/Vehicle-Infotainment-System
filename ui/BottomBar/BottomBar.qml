@@ -47,7 +47,23 @@ Rectangle {
             horizontalCenter: parent.horizontalCenter
             verticalCenter: parent.verticalCenter
         }
-        spacing: 40
+        spacing: 30
+        
+        Image {
+            id: homeIcon
+            width: bottomBar.height * 0.6
+            height: bottomBar.height * 0.6
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/images/homebuttonIcon.png"
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // TODO: Add home functionality
+                    console.log("Home button clicked")
+                }
+            }
+        }
         
         Image {
             id: musicIcon
@@ -100,6 +116,22 @@ Rectangle {
             height: bottomBar.height * 0.6
             fillMode: Image.PreserveAspectFit
             source: "qrc:/images/videoIcon.png"
+            
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    // TODO: Add video functionality
+                    console.log("Video button clicked")
+                }
+            }
+        }
+        
+        Image {
+            id: parkAssistIcon
+            width: bottomBar.height * 0.6
+            height: bottomBar.height * 0.6
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/images/parkAssistIcon.png"
             
             MouseArea {
                 anchors.fill: parent
