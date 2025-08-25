@@ -2,8 +2,8 @@ import QtQuick 2.15
 
 Rectangle {
     id: speedometer
-    width: 200
-    height: 200
+    width: 240
+    height: 220
     color: "transparent"
 
     property int speed: vehicleData.speed

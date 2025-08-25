@@ -23,14 +23,14 @@ Rectangle {
             right: parent.right
             top: parent.top
         }
-        height: parent.height * 0.5
+        height: parent.height * 0.4
         color: "white"
 
         Image {
             id: carRender
             source: "qrc:/images/carRender.png"
             anchors.centerIn: parent
-            width: parent.width * 0.85
+            width: parent.width * 0.7
             fillMode: Image.PreserveAspectFit
             visible: !parkAssistVisible
         }

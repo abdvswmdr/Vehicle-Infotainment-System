@@ -12,7 +12,7 @@ Rectangle {
     Row {
         anchors.fill: parent
         anchors.margins: 20
-        spacing: 30
+        spacing: 25
 
         // Left side - Speedometer and main gauges
         Column {
@@ -68,10 +68,10 @@ Rectangle {
             // Gear and status display
             Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: 120
-                height: 80
+                width: 125
+                height: 100
                 color: "#1a1a1a"
-                radius: 8
+                radius: 10
                 border.color: "#333"
                 border.width: 1
 
@@ -90,7 +90,7 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: vehicleData.gear
                         color: "#ffffff"
-                        font.pixelSize: 32
+                        font.pixelSize: 36
                         font.bold: true
                     }
                 }
@@ -263,7 +263,7 @@ Rectangle {
             // CAN Bus status
             Rectangle {
                 width: 280
-                height: 40
+                height: 60
                 color: "#1a1a1a"
                 radius: 8
                 border.color: "#333"

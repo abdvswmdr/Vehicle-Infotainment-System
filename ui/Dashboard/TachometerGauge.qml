@@ -2,8 +2,8 @@ import QtQuick 2.15
 
 Rectangle {
     id: tachometer
-    width: 180
-    height: 180
+    width: 250
+    height: 240
     color: "transparent"
 
     property int rpm: vehicleData.rpm
