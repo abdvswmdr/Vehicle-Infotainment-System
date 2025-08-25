@@ -109,10 +109,10 @@ Rectangle {
     Text {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.verticalCenter
-        anchors.topMargin: 15
+        anchors.topMargin: 1
         text: "RPM x1000"
-        color: "#666"
-        font.pixelSize: 10
+        color: "#F54927"
+        font.pixelSize: 12
         font.family: "sans-serif"
     }
     
@@ -120,7 +120,7 @@ Rectangle {
     Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 30
+        anchors.bottomMargin: 65
         width: 70
         height: 25
         color: "#1a1a1a"

@@ -11,34 +11,34 @@ import "ui/Phone"
 import "ui/ParkAssist"
 
 Window {
-    width: 1280
-    height: 720
-    visible: true
-    title: qsTr("Vehicle Infotainment")
-    
-    LeftScreen {
-        id: leftScreen
-    }
-    
-    RightScreen {
-        id: rightScreen
-    }
-    
-    BottomBar {
-        id: bottomBar
-        onMusicClicked: rightScreen.showMusic()
-        onDashboardClicked: rightScreen.showMap() // Map button now only restores map
-        onPhoneClicked: rightScreen.showPhone()
-        onParkAssistClicked: leftScreen.showParkAssist()
-    }
-    
-    // Focus for key handling
-    Item {
-        anchors.fill: parent
-        focus: true
-        Keys.onEscapePressed: {
-            // ESC key can return to map view
-            rightScreen.showMap()
-        }
-    }
+  width: 1280
+  height: 720
+  visible: true
+  title: qsTr("VehicleSys")
+
+  LeftScreen {
+    id: leftScreen
+}
+
+  RightScreen {
+    id: rightScreen
+}
+
+  BottomBar {
+  id: bottomBar
+  onMusicClicked: rightScreen.showMusic()
+  onDashboardClicked: rightScreen.showMap() // Map button now only restores map
+  onPhoneClicked: rightScreen.showPhone()
+  onParkAssistClicked: leftScreen.showParkAssist()
+}
+
+  // Focus for key handling
+  Item {
+  anchors.fill: parent
+  focus: true
+  Keys.onEscapePressed: {
+  // ESC key can return to map view
+  rightScreen.showMap()
+}
+}
 }

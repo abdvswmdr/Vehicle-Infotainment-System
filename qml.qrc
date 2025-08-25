@@ -35,6 +35,8 @@
 	<file>images/volume-max.png</file>
 	<file>images/volume-mute.png</file>
 	<file>images/volume-up.png</file>
+	<file>images/homebuttonIcon.png</file>
+	<file>images/parkAssistIcon.png</file>
 	<file>images/volume-zero.png</file>			
     </qresource>
 </RCC>

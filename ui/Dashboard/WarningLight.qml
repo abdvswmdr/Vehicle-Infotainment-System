@@ -15,11 +15,11 @@ Rectangle {
     property bool blinking: false
 
     Behavior on color {
-        ColorAnimation { duration: 150 }
+        ColorAnimation { duration: 400 }
     }
 
     Behavior on border.color {
-        ColorAnimation { duration: 150 }
+        ColorAnimation { duration: 400 }
     }
 
     Text {
@@ -29,7 +29,7 @@ Rectangle {
         font.pixelSize: 16
         
         Behavior on color {
-            ColorAnimation { duration: 150 }
+            ColorAnimation { duration: 400 }
         }
     }
 
@@ -65,7 +65,7 @@ Rectangle {
         opacity: active ? 0.5 : 0
         
         Behavior on opacity {
-            NumberAnimation { duration: 200 }
+            NumberAnimation { duration: 300 }
         }
     }
 }
