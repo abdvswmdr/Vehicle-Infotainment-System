@@ -34,7 +34,8 @@ Rectangle {
     ctx.strokeStyle = "#666"
     ctx.lineWidth = 2
     ctx.font = "bold 16px sans-serif"
-    ctx.fillStyle = "#333"
+    //ctx.fillStyle = "#333"
+	ctx.fillStyle= "#F54927"
     ctx.textAlign = "center"
             
     for (var i = 0; i <= maxSpeed; i += 20) {
@@ -92,35 +93,36 @@ Rectangle {
     
   // Speed label
   Text {
-    anchors.horizontalCenter: parent.horizontalCenter
-    anchors.verticalCenter: parent.verticalCenter
-    anchors.verticalCenterOffset: -15
-    text: "km/h"
-    color: "#F54927"
-    font.pixelSize: 12
-    font.bold: true
-    font.family: "sans-serif"
-  }
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.verticalCenterOffset: -24
+  text: "km/h"
+  // color: "#F54927"   //orange
+  color: "#333"   //grey
+  font.pixelSize: 10
+  font.bold: false
+  font.family: "sans-serif"
+}
   
   // Digital speed display
   Rectangle {
-    anchors.horizontalCenter: parent.horizontalCenter
-    anchors.bottom: parent.bottom
-    anchors.bottomMargin: 40
-    width: 80
-    height: 30
-    color: "#1a1a1a"
-    border.color: "#333"
-    border.width: 1
-    radius: 4
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.bottom: parent.bottom
+  anchors.bottomMargin: 55
+  width: 40
+  height: 14
+  color: "#1a1a1a"
+  border.color: "#333"
+  border.width: 0.4
+  radius: 2
         
-    Text {
-      anchors.centerIn: parent
-      text: speed.toString()
-      color: "#00ff00"
-      font.pixelSize: 16
-      font.bold: true
-      font.family: "monospace"
-    }
-  }
+  Text {
+  anchors.centerIn: parent
+  text: speed.toString()
+  color: "#00ff00"
+  font.pixelSize: 12
+  font.bold: true
+  font.family: "monospace"
+}
+}
 }

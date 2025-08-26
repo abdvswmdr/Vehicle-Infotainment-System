@@ -23,7 +23,7 @@ Rectangle {
             right: parent.right
             top: parent.top
         }
-        height: parent.height * 0.4
+        height: parent.height * 0.44
         color: "white"
 
         Image {
@@ -84,7 +84,7 @@ Rectangle {
 
         VehicleDashboard {
             anchors.fill: parent
-            anchors.margins: 10
+            anchors.margins: 5
         }
     }
     

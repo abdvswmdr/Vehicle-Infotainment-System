@@ -216,7 +216,7 @@ Rectangle {
   Grid {
   anchors.centerIn: parent
   anchors.verticalCenterOffset: 10
-  columns: 5
+  columns: 4
   spacing: parent.width * 0.025
                     
   // Turn signals
