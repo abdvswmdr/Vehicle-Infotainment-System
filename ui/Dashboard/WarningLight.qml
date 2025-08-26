@@ -12,6 +12,7 @@ Rectangle {
     property bool active: false
     property color lightColor: "#ff4444"
     property string symbol: "⚠"
+  //property real symbolScale: 0.7    // optionally to override from caller (font.pixelSize)
     property bool blinking: false
 
     Behavior on color {
@@ -26,7 +27,7 @@ Rectangle {
         anchors.centerIn: parent
         text: symbol
         color: active ? "#ffffff" : "#666"
-        font.pixelSize: 16
+        font.pixelSize: 24
         
         Behavior on color {
             ColorAnimation { duration: 400 }

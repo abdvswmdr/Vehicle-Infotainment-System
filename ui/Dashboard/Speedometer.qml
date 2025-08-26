@@ -94,10 +94,10 @@ Rectangle {
   Text {
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.verticalCenter: parent.verticalCenter
-    anchors.verticalCenterOffset: 10
+    anchors.verticalCenterOffset: -15
     text: "km/h"
     color: "#F54927"
-    font.pixelSize: 16
+    font.pixelSize: 12
     font.bold: true
     font.family: "sans-serif"
   }
