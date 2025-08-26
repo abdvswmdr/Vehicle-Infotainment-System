@@ -107,7 +107,6 @@ Rectangle {
         color: "#666"
         font.pixelSize: 12
         font.bold: true
-        font.bold: true
     }
     
     // Value display
@@ -118,7 +117,6 @@ Rectangle {
         text: Math.round(value) + unit
         color: value > warningThreshold ? "#ff4444" : gaugeColor
         font.pixelSize: 16
-        font.bold: true
         font.bold: true
         
         Behavior on color {

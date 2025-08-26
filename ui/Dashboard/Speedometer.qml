@@ -90,25 +90,37 @@ Rectangle {
 }
 }
     
+  // Speed label
+  Text {
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.verticalCenterOffset: 10
+    text: "km/h"
+    color: "#F54927"
+    font.pixelSize: 16
+    font.bold: true
+    font.family: "sans-serif"
+  }
+  
   // Digital speed display
   Rectangle {
-  anchors.horizontalCenter: parent.horizontalCenter
-  anchors.bottom: parent.bottom
-  anchors.bottomMargin: 40
-  width: 80
-  height: 30
-  color: "#1a1a1a"
-  border.color: "#333"
-  border.width: 1
-  radius: 4
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    anchors.bottomMargin: 40
+    width: 80
+    height: 30
+    color: "#1a1a1a"
+    border.color: "#333"
+    border.width: 1
+    radius: 4
         
-  Text {
-  anchors.centerIn: parent
-  text: speed + " km/h"
-  color: "#00ff00"
-  font.pixelSize: 16
-  font.bold: true
-  font.family: "monospace"
-}
-}
+    Text {
+      anchors.centerIn: parent
+      text: speed.toString()
+      color: "#00ff00"
+      font.pixelSize: 16
+      font.bold: true
+      font.family: "monospace"
+    }
+  }
 }

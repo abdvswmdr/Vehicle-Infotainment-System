@@ -8,34 +8,45 @@ Rectangle {
     color: "#0a0a0a"
     radius: 8
     
-    // Main dashboard layout
+    // Main dashboard layout - 2 columns instead of 3
     Row {
         anchors.fill: parent
         anchors.margins: 20
-        spacing: parent.width * 0.025
+        spacing: parent.width * 0.04
         
-        // Left side - Speedometer and main gauges
+        // Left column - Speedometer, Tachometer, and Circular Gauges
         Column {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             spacing: 20
-            width: parent.width * 0.32
+            width: parent.width * 0.48
             
-            Speedometer {
-                id: speedometer
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width * 0.9
-                height: width * 0.96
-            }
-            
-            // Fuel and temperature gauges
+            // Top row - Main gauges
             Row {
                 anchors.horizontalCenter: parent.horizontalCenter
-                spacing: parent.width * 0.08
+                spacing: parent.width * 0.02
+                
+                Speedometer {
+                    id: speedometer
+                    width: parent.parent.width * 0.48
+                    height: width * 0.96
+                }
+                
+                TachometerGauge {
+                    id: tachometer
+                    width: parent.parent.width * 0.48
+                    height: width * 0.96
+                }
+            }
+            
+            // Middle row - Fuel and temperature gauges
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: parent.width * 0.12
                 
                 CircularGauge {
                     id: fuelGauge
-                    width: parent.parent.width * 0.4
+                    width: parent.parent.width * 0.35
                     height: width
                     value: vehicleData.fuelLevel
                     maxValue: 100
@@ -47,7 +58,7 @@ Rectangle {
                 
                 CircularGauge {
                     id: tempGauge
-                    width: parent.parent.width * 0.4
+                    width: parent.parent.width * 0.35
                     height: width
                     value: vehicleData.engineTemperature
                     maxValue: 120
@@ -57,66 +68,136 @@ Rectangle {
                     warningThreshold: 105
                 }
             }
-        }
-        
-        // Center - Tachometer and gear display
-        Column {
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            spacing: 20
-            width: parent.width * 0.28
             
-            TachometerGauge {
-                id: tachometer
+            // Bottom row - Gear display and CAN Mode Selector
+            Row {
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width * 0.9
-                height: width * 0.96
-            }
-            
-            // Gear and status display
-            Rectangle {
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width * 0.6
-                height: 100
-                color: "#1a1a1a"
-                radius: 10
-                border.color: "#333"
-                border.width: 1
+                spacing: parent.width * 0.05
                 
-                Column {
-                    anchors.centerIn: parent
-                    spacing: 5
+                Rectangle {
+                    width: parent.parent.width * 0.35
+                    height: 100
+                    color: "#1a1a1a"
+                    radius: 10
+                    border.color: "#333"
+                    border.width: 1
                     
-                    Text {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        text: "GEAR"
-                        color: "#FFFFFF"
-                        font.bold: true
-                        font.pixelSize: 16
+                    Column {
+                        anchors.centerIn: parent
+                        spacing: 5
+                        
+                        Text {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: "GEAR"
+                            color: "#FFFFFF"
+                            font.bold: true
+                            font.pixelSize: 16
+                        }
+                        
+                        Text {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: vehicleData.gear
+                            color: "#ffffff"
+                            font.pixelSize: 36
+                            font.bold: true
+                        }
                     }
+                }
+                
+                // CAN Mode Selector
+                Rectangle {
+                    width: parent.parent.width * 0.55
+                    height: 100
+                    color: "#1a1a1a"
+                    radius: 8
+                    border.color: "#333"
+                    border.width: 1
                     
-                    Text {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        text: vehicleData.gear
-                        color: "#ffffff"
-                        font.pixelSize: 36
-                        font.bold: true
+                    property bool simulationMode: canBusController.status === "Simulation Mode Active"
+                    
+                    Column {
+                        anchors.fill: parent
+                        anchors.margins: 10
+                        spacing: 8
+                        
+                        Text {
+                            text: "CAN MODE"
+                            color: "#FFFFFF"
+                            font.pixelSize: 14
+                            font.bold: true
+                            anchors.horizontalCenter: parent.horizontalCenter
+                        }
+                        
+                        Row {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            spacing: 10
+                            
+                            Rectangle {
+                                width: parent.parent.parent.width * 0.4
+                                height: 30
+                                color: parent.parent.parent.simulationMode ? "#004488" : "#333"
+                                radius: 4
+                                border.color: parent.parent.parent.simulationMode ? "#0088ff" : "#555"
+                                border.width: 1
+                                
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "Simulation"
+                                    color: parent.parent.parent.parent.simulationMode ? "#ffffff" : "#aaa"
+                                    font.pixelSize: 12
+                                }
+                                
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        if (canBusController) {
+                                            canBusController.connectToSimulator()
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            Rectangle {
+                                width: parent.parent.parent.width * 0.4
+                                height: 30
+                                color: !parent.parent.parent.simulationMode ? "#004400" : "#333"
+                                radius: 4
+                                border.color: !parent.parent.parent.simulationMode ? "#00aa44" : "#555"
+                                border.width: 1
+                                
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "CAN Control"
+                                    color: !parent.parent.parent.parent.simulationMode ? "#ffffff" : "#aaa"
+                                    font.pixelSize: 12
+                                }
+                                
+                                MouseArea {
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        if (canBusController) {
+                                            canBusController.disconnectFromSimulator()
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
         
-        // Right side - Warning lights and vehicle status
+        // Right column - Warning lights and vehicle status
         Column {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             spacing: 15
-            width: parent.width * 0.35
+            width: parent.width * 0.48
             
             // Warning lights grid
             Rectangle {
                 width: parent.width
-                height: 200
+                height: 280
                 color: "#1a1a1a"
                 radius: 8
                 border.color: "#333"
@@ -135,86 +216,106 @@ Rectangle {
                 Grid {
                     anchors.centerIn: parent
                     anchors.verticalCenterOffset: 10
-                    columns: 4
-                    spacing: parent.width * 0.04
+                    columns: 5
+                    spacing: parent.width * 0.025
                     
                     // Turn signals
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: vehicleData.leftTurnSignal
                         lightColor: "#00aa00"
                         symbol: "◀"
                         blinking: true
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/left_turn.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
                     }
                     
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: vehicleData.rightTurnSignal
                         lightColor: "#00aa00"
                         symbol: "▶"
                         blinking: true
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/right_turn.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
                     }
                     
                     // Engine warning
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: vehicleData.engineTemperature > 105
                         lightColor: "#ff4444"
                         symbol: "⚠"
                         blinking: false
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/engine_warning.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
                     }
                     
                     // Low fuel warning
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: vehicleData.fuelLevel < 20
                         lightColor: "#ffaa00"
                         symbol: "⛽"
                         blinking: vehicleData.fuelLevel < 10
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/fuel_low.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
                     }
                     
                     // Battery warning
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: vehicleData.batteryVoltage < 12
                         lightColor: "#ff4444"
                         symbol: "⚡"
                         blinking: false
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/battery_warning.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
                     }
                     
                     // Headlights
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: vehicleData.headlights
                         lightColor: "#00aaff"
                         symbol: "💡"
                         blinking: false
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/headlights.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
                     }
                     
                     // Parking brake
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: vehicleData.parkingBrake
                         lightColor: "#ff4444"
                         symbol: "🅿"
                         blinking: false
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/parking_brake.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
                     }
                     
                     // Seatbelt
                     WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
                         active: !vehicleData.seatbelt && vehicleData.engineRunning
                         lightColor: "#ff4444"
                         symbol: "🔗"
                         blinking: true
-                        // Alternative image placeholder for better display:
-                        // Image { source: "qrc:/images/seatbelt.png"; anchors.fill: parent; fillMode: Image.PreserveAspectFit }
+                    }
+                    
+                    // High beam
+                    WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
+                        active: vehicleData.highBeam
+                        lightColor: "#0088ff"
+                        symbol: "⚡"
+                        blinking: false
+                    }
+                    
+                    // ABS warning (placeholder for now)
+                    WarningLight {
+                        width: parent.parent.width * 0.15
+                        height: width
+                        active: false
+                        lightColor: "#ff4444"
+                        symbol: "ABS"
+                        blinking: false
                     }
                 }
             }
@@ -330,87 +431,6 @@ Rectangle {
                         color: canBusController.connected ? "#00aa44" : "#ff4444"
                         font.pixelSize: 14
                         anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-            }
-            
-            // CAN Mode Selector
-            Rectangle {
-                width: parent.width
-                height: 90
-                color: "#1a1a1a"
-                radius: 8
-                border.color: "#333"
-                border.width: 1
-                
-                property bool simulationMode: canBusController.status === "Simulation Mode Active"
-                
-                Column {
-                    anchors.fill: parent
-                    anchors.margins: 10
-                    spacing: 8
-                    
-                    Text {
-                        text: "CAN MODE"
-                        color: "#FFFFFF"
-                        font.pixelSize: 16
-                        font.bold: true
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-                    
-                    Row {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 15
-                        
-                        Rectangle {
-                            width: parent.parent.parent.width * 0.35
-                            height: 35
-                            color: parent.parent.parent.simulationMode ? "#004488" : "#333"
-                            radius: 4
-                            border.color: parent.parent.parent.simulationMode ? "#0088ff" : "#555"
-                            border.width: 1
-                            
-                            Text {
-                                anchors.centerIn: parent
-                                text: "Simulation"
-                                color: parent.parent.parent.parent.simulationMode ? "#ffffff" : "#aaa"
-                                font.pixelSize: 14
-                            }
-                            
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    if (canBusController) {
-                                        canBusController.connectToSimulator()
-                                    }
-                                }
-                            }
-                        }
-                        
-                        Rectangle {
-                            width: parent.parent.parent.width * 0.35
-                            height: 35
-                            color: !parent.parent.parent.simulationMode ? "#004400" : "#333"
-                            radius: 4
-                            border.color: !parent.parent.parent.simulationMode ? "#00aa44" : "#555"
-                            border.width: 1
-                            
-                            Text {
-                                anchors.centerIn: parent
-                                text: "CAN Control"
-                                color: !parent.parent.parent.parent.simulationMode ? "#ffffff" : "#aaa"
-                                font.pixelSize: 14
-                            }
-                            
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    if (canBusController) {
-                                        canBusController.disconnectFromSimulator()
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             }

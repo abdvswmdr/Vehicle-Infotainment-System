@@ -7,6 +7,7 @@
 
 #ifdef HAVE_QT_MULTIMEDIA
 #include <QMediaMetaData>
+#include <QAudio>
 #endif
 
 MediaController::MediaController(QObject *parent)
@@ -35,6 +36,10 @@ MediaController::MediaController(QObject *parent)
     // Setup media player
     m_player->setPlaylist(m_playlist);
     m_player->setVolume(m_volume);
+    
+    // Ensure audio output is properly configured
+    m_player->setAudioRole(QAudio::MusicRole);
+    qDebug() << "MediaController: Qt Multimedia available, audio role set to MusicRole";
 
     // Connect signals
     connect(m_player, &QMediaPlayer::stateChanged, this, &MediaController::handleStateChanged);
@@ -47,6 +52,11 @@ MediaController::MediaController(QObject *parent)
 
     // Setup playlist
     m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
+    
+    qDebug() << "MediaController: Successfully initialized with Qt Multimedia";
+#else
+    qWarning() << "MediaController: Qt Multimedia not available - audio playback will not work";
+    qWarning() << "To fix: Install qt5-multimedia package and rebuild the application";
 #endif
 
     // Position update timer
@@ -463,7 +473,7 @@ void MediaController::handleError(QMediaPlayer::Error error)
         errorString = "Access denied - insufficient permissions";
         break;
     case QMediaPlayer::ServiceMissingError:
-        errorString = "Service missing - required media service not available";
+        errorString = "Service missing - required media service not available. Check if audio drivers are installed.";
         break;
     default:
         errorString = "Unknown media error";
@@ -471,6 +481,8 @@ void MediaController::handleError(QMediaPlayer::Error error)
     }
     
     qWarning() << "Media player error:" << errorString;
+    qWarning() << "Volume level:" << m_volume << "Audio role: Music";
+    qWarning() << "Available audio devices should be checked in system settings";
     emit mediaError(errorString);
 }
 #endif

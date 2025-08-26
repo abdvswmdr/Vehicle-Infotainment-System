@@ -108,8 +108,8 @@ Rectangle {
     // RPM label
     Text {
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.verticalCenter
-        anchors.topMargin: 1
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: 10
         text: "RPM x1000"
         color: "#F54927"
         font.pixelSize: 16
