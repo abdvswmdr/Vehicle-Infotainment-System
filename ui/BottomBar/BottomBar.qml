@@ -166,8 +166,8 @@ Rectangle {
   HVACComponent {
   id: passengerHVACControl
   anchors {
-  left: parkAssistIcon.left
-  leftMargin: 8
+  left: carSettingsIcon.right
+  leftMargin: 1200
   top: parent.top
   bottom: parent.bottom
 }

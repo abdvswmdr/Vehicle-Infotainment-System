@@ -3,7 +3,7 @@ import QtQuick 2.15
 Rectangle {
   id: statusBar
   height: 30
-  color: "#000000"
+  color: "#1a1a1a"
     
   Row {
   id: statusRow
