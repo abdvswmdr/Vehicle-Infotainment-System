@@ -2,8 +2,8 @@ import QtQuick 2.15
 
 Rectangle {
     id: statusBar
-    height: 60
-    color: "transparent"
+    height: 40
+    color: "#000000"
     
     Row {
         id: statusRow
@@ -32,7 +32,7 @@ Rectangle {
             text: systemHandler.currentTime
             font.pixelSize: 20
             font.bold: true
-            color: "black"
+            color: "white"
             anchors.verticalCenter: parent.verticalCenter
         }
 
@@ -41,7 +41,7 @@ Rectangle {
             text: systemHandler.outdoorTemp + "°C"
             font.pixelSize: 20
             font.bold: true
-            color: "black"
+            color: "#ffffff"
             anchors.verticalCenter: parent.verticalCenter
         }
 
@@ -81,7 +81,7 @@ Rectangle {
                 text: systemHandler.userName
                 font.pixelSize: 20
                 font.bold: true
-                color: "black"
+                color: "white"
                 anchors.verticalCenter: parent.verticalCenter
             }
         }
