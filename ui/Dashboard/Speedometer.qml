@@ -3,7 +3,7 @@ import QtQuick 2.15
 Rectangle {
   id: speedometer
   width: 250
-  height: 240
+  height: 250
   color: "transparent"
 
   property int speed: vehicleData.speed
@@ -33,7 +33,7 @@ Rectangle {
     // Draw speed markings
     ctx.strokeStyle = "#666"
     ctx.lineWidth = 2
-    ctx.font = "bold 16px sans-serif"
+    ctx.font = "bold 18px sans-serif"
     //ctx.fillStyle = "#333"
 	ctx.fillStyle= "#F54927"
     ctx.textAlign = "center"
@@ -78,7 +78,7 @@ Rectangle {
   // Speedometer needle
   Rectangle {
   id: needle
-  width: 4
+  width: 5
   height: speedometer.height * 0.35
   color: "#ff4444"
   anchors.horizontalCenter: parent.horizontalCenter
@@ -95,11 +95,11 @@ Rectangle {
   Text {
   anchors.horizontalCenter: parent.horizontalCenter
   anchors.verticalCenter: parent.verticalCenter
-  anchors.verticalCenterOffset: -24
+  anchors.verticalCenterOffset: -42
   text: "km/h"
   // color: "#F54927"   //orange
   color: "#333"   //grey
-  font.pixelSize: 10
+  font.pixelSize: 12
   font.bold: false
   font.family: "sans-serif"
 }
@@ -108,19 +108,20 @@ Rectangle {
   Rectangle {
   anchors.horizontalCenter: parent.horizontalCenter
   anchors.bottom: parent.bottom
-  anchors.bottomMargin: 55
-  width: 40
-  height: 14
+  anchors.bottomMargin: 80
+  width: 50
+  height: 20
   color: "#1a1a1a"
   border.color: "#333"
   border.width: 0.4
   radius: 2
         
   Text {
-  anchors.centerIn: parent
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
   text: speed.toString()
   color: "#00ff00"
-  font.pixelSize: 12
+  font.pixelSize: 14
   font.bold: true
   font.family: "monospace"
 }

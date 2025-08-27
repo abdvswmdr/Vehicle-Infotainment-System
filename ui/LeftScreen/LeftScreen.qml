@@ -23,7 +23,7 @@ Rectangle {
             right: parent.right
             top: parent.top
         }
-        height: parent.height * 0.44
+        height: parent.height * 0.485
         color: "white"
 
         Image {

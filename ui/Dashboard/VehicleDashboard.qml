@@ -4,22 +4,22 @@ import "."
 Rectangle {
   id: dashboard
   anchors.fill: parent
-  anchors.margins: 10
+  anchors.margins: 5
   color: "#0a0a0a"
   radius: 8
     
   // Main dashboard layout - 2 columns
   Row {
   anchors.fill: parent
-  anchors.margins: 15
-  spacing: parent.width * 0.04
+  anchors.margins: 8
+  spacing: parent.width * 0.01
         
   // Left column - Speedometer, Tachometer, and Circular Gauges
   Column {
   anchors.top: parent.top
   anchors.bottom: parent.bottom
-  spacing: 15
-  width: parent.width * 0.5
+  spacing: 4
+  width: parent.width * 0.66  // increments gauges too
             
   // Top row - Main gauges
   Row {
@@ -42,11 +42,12 @@ Rectangle {
   // Middle row - Fuel and temperature gauges
   Row {
   anchors.horizontalCenter: parent.horizontalCenter
-  spacing: parent.width * 0.12
+  spacing: parent.width * 0.22
                 
   CircularGauge {
   id: fuelGauge
-  width: parent.parent.width * 0.35
+  //anchors.horizontalCenter: tachometer.horizontalCenter
+  width: parent.parent.width * 0.25
   height: width
   value: vehicleData.fuelLevel
   maxValue: 100
@@ -58,7 +59,7 @@ Rectangle {
                 
   CircularGauge {
   id: tempGauge
-  width: parent.parent.width * 0.35
+  width: parent.parent.width * 0.25
   height: width
   value: vehicleData.engineTemperature
   maxValue: 120
@@ -75,8 +76,8 @@ Rectangle {
   spacing: parent.width * 0.05
                 
   Rectangle {
-  width: parent.parent.width * 0.35
-  height: 100
+  width: parent.parent.width * 0.3
+  height: 80
   color: "#1a1a1a"
   radius: 10
   border.color: "#333"
@@ -84,20 +85,20 @@ Rectangle {
                     
   Column {
   anchors.centerIn: parent
-                        spacing: 5
+                        spacing: 2
                         
                         Text {
-	anchors.horizontalCenter: parent.horizontalCenter
-	text: "GEAR"
-	color: "#FFFFFF"
-	font.bold: true
-	font.pixelSize: 16
+    anchors.horizontalCenter: parent.horizontalCenter
+    text: "GEAR"
+    color: "#FFFFFF"
+    font.bold: true
+    font.pixelSize: 16
   }
                         
   Text {
   anchors.horizontalCenter: parent.horizontalCenter
   text: vehicleData.gear
-  color: "#ffffff"
+  color: "#00ff00"
   font.pixelSize: 36
   font.bold: true
 }
@@ -106,8 +107,8 @@ Rectangle {
                 
   // CAN Mode Selector
   Rectangle {
-  width: parent.parent.width * 0.55
-  height: 100
+  width: parent.parent.width * 0.54
+  height: 80
   color: "#1a1a1a"
   radius: 8
   border.color: "#333"
@@ -123,7 +124,7 @@ Rectangle {
   Text {
   text: "CAN MODE"
   color: "#FFFFFF"
-  font.pixelSize: 14
+  font.pixelSize: 16
   font.bold: true
   anchors.horizontalCenter: parent.horizontalCenter
 }
@@ -191,13 +192,13 @@ Rectangle {
   Column {
   anchors.top: parent.top
   anchors.bottom: parent.bottom
-  spacing: 15
-  width: parent.width * 0.45
+  spacing: 8
+  width: parent.width * 0.32
             
   // Warning lights grid
   Rectangle {
-  width: parent.width
-  height: 280
+  width: parent.width 
+  height: 240
   color: "#1a1a1a"
   radius: 8
   border.color: "#333"
@@ -214,14 +215,20 @@ Rectangle {
 }
                 
   Grid {
-  anchors.centerIn: parent
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+  //anchors.top: parent.top
+  //anchors.topMargin: 
+  //anchors.bottom: parent.bottom
+  //anchors.bottomMargin: 2
   anchors.verticalCenterOffset: 10
+  // anchors.horizontalCenterOffset: 5
   columns: 4
-  spacing: parent.width * 0.025
+  spacing: parent.width * 0.03
                     
   // Turn signals
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.leftTurnSignal
   lightColor: "#00aa00"
@@ -230,7 +237,7 @@ Rectangle {
 }
                     
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.rightTurnSignal
   lightColor: "#00aa00"
@@ -240,7 +247,7 @@ Rectangle {
                     
   // Engine warning
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.engineTemperature > 105
   lightColor: "#ff4444"
@@ -250,7 +257,7 @@ Rectangle {
                     
   // Low fuel warning
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.fuelLevel < 20
   lightColor: "#ffaa00"
@@ -269,7 +276,7 @@ Rectangle {
                     
   // Battery warning
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.batteryVoltage < 12
   lightColor: "#ff4444"
@@ -286,7 +293,7 @@ Rectangle {
                     
   // Headlights
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.headlights
   lightColor: "#00aaff"
@@ -296,7 +303,7 @@ Rectangle {
                     
   // Parking brake
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.parkingBrake
   lightColor: "#ff4444"
@@ -306,7 +313,7 @@ Rectangle {
                     
   // Seatbelt
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: !vehicleData.seatbelt && vehicleData.engineRunning
   lightColor: "#ff4444"
@@ -323,7 +330,7 @@ Rectangle {
                     
   // High beam
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: vehicleData.highBeam
   lightColor: "#0088ff"
@@ -333,7 +340,7 @@ Rectangle {
                     
   // ABS warning (placeholder for now)
   WarningLight {
-  width: parent.parent.width * 0.16
+  width: parent.parent.width * 0.2
   height: width
   active: false
   lightColor: "#ff4444"
@@ -346,7 +353,7 @@ Rectangle {
   // Vehicle status information
   Rectangle {
   width: parent.width
-  height: 130
+  height: 140
   color: "#1a1a1a"
   radius: 8
   border.color: "#333"
@@ -415,7 +422,7 @@ Rectangle {
   // CAN Bus status
   Rectangle {
   width: parent.width
-  height: 60
+  height: 72
   color: "#1a1a1a"
   radius: 8
   border.color: "#333"
@@ -423,7 +430,9 @@ Rectangle {
                 
   Row {
   anchors.centerIn: parent
-                    spacing: 10
+                      spacing: 10
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.horizontalCenter: parent.horizontalCenter
                     
                     Rectangle {
   width: 8
@@ -450,9 +459,9 @@ Rectangle {
 }
                     
   Text {
-  text: "CAN Bus: " + (canBusController.connected ? "CAN connection is active" : "CAN is off")
+  text: "CAN: " + (canBusController.connected ? "connection ON" : "connection OFF")
   color: canBusController.connected ? "#00aa44" : "#ff4444"
-  font.pixelSize: 14
+  font.pixelSize: 16
   anchors.verticalCenter: parent.verticalCenter
 }
 }

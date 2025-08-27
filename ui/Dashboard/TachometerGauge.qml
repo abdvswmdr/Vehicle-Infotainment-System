@@ -3,7 +3,7 @@ import QtQuick 2.15
 Rectangle {
   id: tachometer
   width: 250
-  height: 240
+  height: 250
   color: "transparent"
 
   property int rpm: vehicleData.rpm
@@ -33,7 +33,7 @@ Rectangle {
     // Draw RPM markings
     ctx.strokeStyle = "#666"
     ctx.lineWidth = 1.5
-    ctx.font = "bold 14px sans-serif"
+    ctx.font = "bold 18px sans-serif"
     //ctx.fillStyle = "#333"
 	ctx.fillStyle= "#F54927"
     ctx.textAlign = "center"
@@ -89,7 +89,7 @@ Rectangle {
   // Tachometer needle
   Rectangle {
   id: needle
-  width: 3
+  width: 4
   height: tachometer.height * 0.32
   color: rpm > 6000 ? "#ff0000" : "#ffffff"
   anchors.horizontalCenter: parent.horizontalCenter
@@ -110,11 +110,11 @@ Rectangle {
   Text {
   anchors.horizontalCenter: parent.horizontalCenter
   anchors.verticalCenter: parent.verticalCenter
-  anchors.verticalCenterOffset: -24
+  anchors.verticalCenterOffset: -40
   text: "RPM x1000"
   color: "#333"
-  font.pixelSize: 10
-  font.bold: true
+  font.pixelSize: 12
+  font.bold: false
   font.family: "sans-serif"
 }
     
@@ -122,19 +122,20 @@ Rectangle {
   Rectangle {
   anchors.horizontalCenter: parent.horizontalCenter
   anchors.bottom: parent.bottom
-  anchors.bottomMargin: 60
-  width: 50
-  height: 14
+  anchors.bottomMargin: 80
+  width: 70
+  height: 20
   color: "#1a1a1a"
   border.color: "#333"
   border.width: 0.4
   radius: 2
         
   Text {
-  anchors.centerIn: parent
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
   text: rpm.toString()
   color: rpm > 6000 ? "#ff4444" : "#00ff00"
-  font.pixelSize: 12
+  font.pixelSize: 14
   font.bold: true
   font.family: "monospace"
             
