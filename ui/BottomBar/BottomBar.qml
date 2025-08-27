@@ -156,18 +156,18 @@ Rectangle {
   id: volumeControl
   anchors {
   right: parent.right
-  rightMargin: 35
-  left: musicPlayerStatus.visible ? musicPlayerStatus.right : volumeControl.left
+  rightMargin: 170
   top: parent.top
   bottom: parent.bottom
 }
+  width: 40
 }
     
   HVACComponent {
   id: passengerHVACControl
   anchors {
   left: carSettingsIcon.right
-  leftMargin: 1200
+  leftMargin: 260
   top: parent.top
   bottom: parent.bottom
 }

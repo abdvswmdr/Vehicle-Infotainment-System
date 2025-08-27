@@ -2,8 +2,9 @@ import QtQuick 2.15
 
 Rectangle {
     id: musicStatus
-    width: 200
-    height: parent.height * 0.8
+    width: 270
+    height: parent.height * 0.7
+    anchors.verticalCenter: parent.verticalCenter
     color: "#2a2a2a"
     radius: 4
     border.color: "#444"
@@ -17,6 +18,7 @@ Rectangle {
         
         // Album art thumbnail
         Rectangle {
+            id: albumArt
             width: parent.height
             height: parent.height
             color: "#444"

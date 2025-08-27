@@ -70,7 +70,7 @@ Rectangle {
             
   Image {
   id: userIcon
-  width: statusBar.height / 2.2
+  width: statusBar.height * 0.55
   fillMode: Image.PreserveAspectFit
   source: "qrc:/images/userIcon_w.png"
   anchors.verticalCenter: parent.verticalCenter
@@ -101,7 +101,7 @@ Rectangle {
   width: 28
   height: 28
   radius: 4
-  color: "black"
+  color: "#1a1a1a"
   anchors.verticalCenter: parent.verticalCenter
             
   Image {
@@ -119,7 +119,7 @@ Rectangle {
   width: 28
   height: 28
   radius: 4
-  color: "#000000"
+  color: "#1a1a1a"
   anchors.verticalCenter: parent.verticalCenter
   
   Image {
@@ -137,7 +137,7 @@ Rectangle {
   width: 28
   height: 28
   radius: 4
-  color: "#000000"
+  color: "#1a1a1a"
   anchors.verticalCenter: parent.verticalCenter
 
   Image {
