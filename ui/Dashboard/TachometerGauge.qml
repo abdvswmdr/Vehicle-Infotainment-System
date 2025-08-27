@@ -8,7 +8,7 @@ Rectangle {
 
   property int rpm: vehicleData.rpm
   property int maxRpm: 7000
-  property real needleAngle: (rpm / maxRpm) * 240 - 120 // -120 to +120 degrees
+  property real needleAngle: (rpm / maxRpm) * 240 - 120 // 240 degree sweep, -120 start (7 o'clock position)
 
   Canvas {
   id: tachometerCanvas

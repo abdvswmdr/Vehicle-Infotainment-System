@@ -347,6 +347,26 @@ Rectangle {
   symbol: "ABS"
   blinking: false
 }
+                    
+  // New Warning Light 1 (placeholder)
+  WarningLight {
+  width: parent.parent.width * 0.2
+  height: width
+  active: false
+  lightColor: "#ffaa00"
+  symbol: "⚠1"
+  blinking: false
+}
+                    
+  // New Warning Light 2 (placeholder)
+  WarningLight {
+  width: parent.parent.width * 0.2
+  height: width
+  active: false
+  lightColor: "#00aaff"
+  symbol: "⚠2"
+  blinking: false
+}
 }
 }
             

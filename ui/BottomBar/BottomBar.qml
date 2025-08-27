@@ -142,6 +142,15 @@ Rectangle {
 	}
     }
     
+    MusicPlayerStatus {
+        id: musicPlayerStatus
+        anchors {
+            right: volumeControl.left
+            rightMargin: 20
+            verticalCenter: parent.verticalCenter
+        }
+    }
+    
     VolumeControlComponent {
 	id: volumeControl
 	anchors {
@@ -155,8 +164,8 @@ Rectangle {
     HVACComponent {
 	id: passengerHVACControl
 	anchors {
-	    right: volumeControl.left
-	    rightMargin: 65
+	    right: musicPlayerStatus.visible ? musicPlayerStatus.left : volumeControl.left
+	    rightMargin: 20
 	    top: parent.top
 	    bottom: parent.bottom
 	}

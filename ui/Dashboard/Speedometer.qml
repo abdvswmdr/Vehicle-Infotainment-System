@@ -8,7 +8,7 @@ Rectangle {
 
   property int speed: vehicleData.speed
   property int maxSpeed: 160
-  property real needleAngle: (speed / maxSpeed) * 270 - 135 // Start from -135 degrees (vertical top) for proper 0 alignment
+  property real needleAngle: (speed / maxSpeed) * 270 - 135 // 270 degree sweep, -135 start (8 o'clock position)
 
   Canvas {
   id: speedometerCanvas
