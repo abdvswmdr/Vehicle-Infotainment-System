@@ -2,7 +2,7 @@ import QtQuick 2.15
 
 Rectangle {
     id: musicStatus
-    width: 250
+    width: 200
     height: parent.height * 0.8
     color: "#2a2a2a"
     radius: 4

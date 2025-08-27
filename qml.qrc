@@ -43,5 +43,11 @@
     <file>images/lowFuelIcon.png</file>
     <file>images/seatBeltIcon.png</file>
     <file>images/batteryIcon.png</file>
+    <file>images/bluetoothIcon.png</file>
+    <file>images/wifiIcon.png</file>
+    <file>images/batteryChargingIcon.png</file>
+    <file>images/padlockLock.png</file>
+    <file>images/padlockUnlock.png</file>
+    <file>images/userIcon_w.png</file>
   </qresource>
 </RCC>
