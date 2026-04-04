@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 project(VehicleSys LANGUAGES CXX)
 
 
-find_package(Qt5 REQUIRED COMPONENTS Core Quick Widgets)
+find_package(Qt5 REQUIRED COMPONENTS Core Quick Widgets Test)
 find_package(Qt5 QUIET COMPONENTS SerialBus Multimedia)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -41,3 +41,15 @@ if(TARGET Qt5::Multimedia)
     target_link_libraries(VehicleSys Qt5::Multimedia)
     target_compile_definitions(VehicleSys PRIVATE HAVE_QT_MULTIMEDIA)
 endif()
+
+# --- Tests ---
+enable_testing()
+
+add_executable(tst_system
+    tests/tst_system.cpp
+    controllers/src/system.cpp
+    controllers/headers/system.h
+)
+target_include_directories(tst_system PRIVATE controllers/headers)
+target_link_libraries(tst_system Qt5::Core Qt5::Test)
+add_test(NAME SystemTest COMMAND tst_system)

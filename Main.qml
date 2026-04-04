@@ -28,7 +28,7 @@ Window {
     BottomBar {
 	id: bottomBar
 	onMusicClicked: rightScreen.showMusic()
-	onDashboardClicked: rightScreen.showMap() // Map button now only restores map
+	onDashboardClicked: rightScreen.showMap()  
 	onPhoneClicked: rightScreen.showPhone()
 	onParkAssistClicked: leftScreen.showParkAssist()
     }
